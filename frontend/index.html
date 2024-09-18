@@ -1,13 +1,245 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PACE in the Classroom</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PACE Satellite Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hidden {
+            display: none;
+        }
+        .bg-gradient {
+            background: linear-gradient(to bottom right, #4facfe, #00f2fe);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation Bar -->
+    
+    <header class="bg-white shadow-md py-4 fixed w-full top-0 z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-semibold text-gray-700">PACE Satellite Portal</h1>
+            <nav class="flex space-x-4">
+                <a href="#home" class="text-gray-700 hover:text-blue-500" onclick="showPage('home')"><i class="fas fa-home"></i> Home</a>
+                <a href="#data-visualization" class="text-gray-700 hover:text-blue-500" onclick="showPage('data-visualization')"><i class="fas fa-chart-bar"></i> Data Visualization</a>
+                <a href="#learning-materials" class="text-gray-700 hover:text-blue-500" onclick="showPage('learning-materials')"><i class="fas fa-book"></i> Learning Materials</a>
+                <a href="#phytoplankton-info" class="text-gray-700 hover:text-blue-500" onclick="showPage('phytoplankton-info')"><i class="fas fa-leaf"></i> Phytoplankton Info</a>
+                <a href="#contact-us" class="text-gray-700 hover:text-blue-500" onclick="showPage('contact-us')"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="#profile" class="text-gray-700 hover:text-blue-500" onclick="showPage('profile')"><i class="fas fa-user"></i> Profile</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto pt-20 bg-gradient">
+        <!-- Home Section -->
+        <section id="home" class="py-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-700">Welcome to the PACE Satellite Dashboard</h2>
+                <p class="text-gray-600">Your central hub for exploring PACE data and learning materials.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+                    <i class="fas fa-globe text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Introduction to PACE Satellite</h3>
+                    <p class="text-gray-600 mb-4">Learn about the PACE satellite and its mission to monitor ocean color, aerosols, and clouds.</p>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        Explore Data <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+                    <i class="fas fa-chart-bar text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Latest Data</h3>
+                    <p class="text-gray-600 mb-4">View the most recent data collected by the PACE satellite, including ocean color, aerosols, and clouds.</p>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        Start Learning <i class="fas fa-book ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Visualization Section -->
+        <section id="data-visualization" class="hidden py-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-700">Data Visualization</h2>
+                <p class="text-gray-600">Interact with PACE data using our visualization tools.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div id="map" class="w-full h-96 mb-4 bg-gray-200"></div>
+                <div class="flex flex-col md:flex-row justify-between items-center mb-4">
+                    <div class="flex space-x-4 mb-4 md:mb-0">
+                        <button class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fas fa-filter mr-2"></i> Filters
+                        </button>
+                        <button class="bg-green-500 text-white py-2 px-4 rounded-lg flex items-center">
+                            <i class="fas fa-chart-line mr-2"></i> Trends
+                        </button>
+                    </div>
+                    <div class="flex items-center w-full md:w-auto">
+                        <label for="timeline" class="mr-2 text-gray-600">Timeline:</label>
+                        <input type="range" id="timeline" class="w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Materials Section -->
+        <section id="learning-materials" class="hidden py-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-700">Learning Materials</h2>
+                <p class="text-gray-600">Educational resources for students to understand PACE data.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <ul class="flex justify-center space-x-4">
+                        <li><button class="bg-blue-500 text-white py-2 px-4 rounded-lg">Elementary</button></li>
+                        <li><button class="bg-blue-500 text-white py-2 px-4 rounded-lg">Middle School</button></li>
+                        <li><button class="bg-blue-500 text-white py-2 px-4 rounded-lg">High School</button></li>
+                    </ul>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                        <i class="fas fa-book text-blue-500 text-2xl mb-2"></i>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Lesson Plan 1</h3>
+                        <p class="text-gray-600 mb-4">Downloadable lesson plan for understanding ocean color.</p>
+                        <button class="bg-green-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                            Download <i class="fas fa-download ml-2"></i>
+                        </button>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                        <i class="fas fa-video text-blue-500 text-2xl mb-2"></i>
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Educational Video 1</h3>
+                        <p class="text-gray-600 mb-4">Watch a video explaining the importance of phytoplankton.</p>
+                        <button class="bg-green-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                            Watch <i class="fas fa-play ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phytoplankton Information Section -->
+        <section id="phytoplankton-info" class="hidden py-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-700">Phytoplankton Information</h2>
+                <p class="text-gray-600">Learn about different phytoplankton species and their roles in the ecosystem.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://placehold.co/200x200" alt="Phytoplankton species 1" class="w-full h-48 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Species 1</h3>
+                    <p class="text-gray-600 mb-4">Fun facts about species 1 and its role in the ecosystem.</p>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://placehold.co/200x200" alt="Phytoplankton species 2" class="w-full h-48 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Species 2</h3>
+                    <p class="text-gray-600 mb-4">Fun facts about species 2 and its role in the ecosystem.</p>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://placehold.co/200x200" alt="Phytoplankton species 3" class="w-full h-48 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Species 3</h3>
+                    <p class="text-gray-600 mb-4">Fun facts about species 3 and its role in the ecosystem.</p>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact-us" class="hidden py-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-700">Contact Us</h2>
+                <p class="text-gray-600">Get in touch with us for more information about the PACE satellite.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg mx-auto">
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 mb-2" for="contact-name">Name</label>
+                        <input type="text" id="contact-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 mb-2" for="contact-email">Email</label>
+                        <input type="email" id="contact-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 mb-2" for="contact-message">Message</label>
+                        <textarea id="contact-message" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Enter your message"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg flex items-center justify-center">
+                        Submit <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- User Profile Section -->
+        <section id="profile" class="hidden py-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-semibold text-gray-700">User Profile</h2>
+                <p class="text-gray-600">View and edit your personal information.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg mx-auto">
+                <div class="mb-4 text-center">
+                    <img src="https://placehold.co/100x100" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4">
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-camera mr-2"></i> Change Profile Picture
+                    </button>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 mb-2" for="profile-name">Name</label>
+                        <input type="text" id="profile-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 mb-2" for="profile-email">Email</label>
+                        <input type="email" id="profile-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-600 mb-2" for="profile-password">Password</label>
+                        <input type="password" id="profile-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg flex items-center justify-center">
+                        Save Changes <i class="fas fa-save ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-md py-4 mt-16">
+        <div class="container mx-auto text-center text-gray-700">
+            &copy; 2023 PACE Satellite Portal. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                if (section.id === pageId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        // Show home page by default
+        showPage('home');
+    </script>
+</body>
 </html>
