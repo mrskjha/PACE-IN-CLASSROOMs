@@ -1,10 +1,13 @@
 
-function App() {
+import Navbar from './components/Navbar'
+import Header from './components/Header';
+
+export const App = () => {
   return (
-    <h1 className="text-3xl font-bold ">
-      PACE in the Classroom
-    </h1>
+    <div><Navbar />
+    <Header />
+    </div>
   )
 }
 
-export default App
+export default App;
