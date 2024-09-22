@@ -1,13 +1,73 @@
+import React, { useState } from "react";
 import "../styles/login.css";
 import { faFacebook, faTelegram, faGoogle, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../assets/logo.svg';
 import registerImage from '../assets/register.svg';
-
 
 const Login = () => {
     const [isSignUp, setIsSignUp] = useState(false);
 
+    // State to handle form inputs
+    const [signInData, setSignInData] = useState({ email: '', password: '' });
+    const [signUpData, setSignUpData] = useState({ username: '', email: '', password: '' });
+
+    // Handle input changes
+    const handleSignInChange = (e) => {
+        setSignInData({ ...signInData, [e.target.name]: e.target.value });
+    };
+
+    const handleSignUpChange = (e) => {
+        setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
+    };
+
+    // Handle form submissions
+    const handleSignInSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Sign In Data:', signInData);
+
+        // Fetch request for sign in
+        try {
+            const response = await fetch("http://localhost:5000/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(signInData),
+            });
+            const data = await response.json();
+            console.log("Login API Response:", data);
+            alert("Logged in successfully!");
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Login failed!");
+        }
+    };
+
+    const handleSignUpSubmit = async (e) => {
+        e.preventDefault();
+        console.log('Sign Up Data:', signUpData);
+
+        // Fetch request for sign up
+        try {
+            const response = await fetch("http://localhost:5000/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(signUpData),
+            });
+            const data = await response.json();
+            console.log("Sign Up API Response:", data);
+            alert("Signed up successfully!");
+            
+        } catch (error) {
+            console.error("Sign Up error:", error);
+            alert("Sign Up failed!");
+        }
+    };
+
+    // Toggling between Sign Up and Sign In
     const handleSignUpClick = () => {
         setIsSignUp(true);
     };
@@ -21,61 +81,99 @@ const Login = () => {
             <div className={`container ${isSignUp ? 'sign-up-mode' : ''}`}>
                 <div className="forms-container">
                     <div className="signin-signup">
-                        <form action="#" className={`sign-in-form ${isSignUp ? 'hidden' : ''}`}>
+                        {/* Sign In Form */}
+                        <form onSubmit={handleSignInSubmit} className={`sign-in-form ${isSignUp ? 'hidden' : ''}`}>
                             <h2 className="title">Sign in</h2>
                             <div className="input-field">
                                 <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Username" />
+                                <input
+                                    type="text"
+                                    name="email"
+                                    placeholder="Email"
+                                    value={signInData.email}
+                                    onChange={handleSignInChange}
+                                    required
+                                />
                             </div>
                             <div className="input-field">
                                 <i className="fas fa-lock"></i>
-                                <input type="password" placeholder="Password" />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    value={signInData.password}
+                                    onChange={handleSignInChange}
+                                    required
+                                />
                             </div>
                             <input type="submit" value="Login" className="btn solid" />
                             <p className="social-text">Or Sign in with social platforms</p>
                             <div className="social-media">
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-facebook-f" icon={faFacebook}></i>
+                                    <FontAwesomeIcon icon={faFacebook} />
                                 </a>
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-telegram" icon={faTelegram}></i>
+                                    <FontAwesomeIcon icon={faTelegram} />
                                 </a>
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-google" icon={faGoogle}></i>
+                                    <FontAwesomeIcon icon={faGoogle} />
                                 </a>
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-linkedin-in" icon={faLinkedinIn}></i>
+                                    <FontAwesomeIcon icon={faLinkedinIn} />
                                 </a>
                             </div>
                         </form>
-                        <form action="#" className={`sign-up-form ${isSignUp ? '' : 'hidden'}`}>
+
+                        {/* Sign Up Form */}
+                        <form onSubmit={handleSignUpSubmit} className={`sign-up-form ${isSignUp ? '' : 'hidden'}`}>
                             <h2 className="title">Sign up</h2>
                             <div className="input-field">
                                 <i className="fas fa-user"></i>
-                                <input type="text" placeholder="Username" />
+                                <input
+                                    type="text"
+                                    name="username"
+                                    placeholder="Username"
+                                    value={signUpData.username}
+                                    onChange={handleSignUpChange}
+                                    required
+                                />
                             </div>
                             <div className="input-field">
                                 <i className="fas fa-envelope"></i>
-                                <input type="email" placeholder="Email" />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    value={signUpData.email}
+                                    onChange={handleSignUpChange}
+                                    required
+                                />
                             </div>
                             <div className="input-field">
                                 <i className="fas fa-lock"></i>
-                                <input type="password" placeholder="Password" />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    value={signUpData.password}
+                                    onChange={handleSignUpChange}
+                                    required
+                                />
                             </div>
                             <input type="submit" className="btn" value="Sign up" />
                             <p className="social-text">Or Sign up with social platforms</p>
                             <div className="social-media">
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-facebook-f"></i>
+                                    <FontAwesomeIcon icon={faFacebook} />
                                 </a>
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-telegram"></i>
+                                    <FontAwesomeIcon icon={faTelegram} />
                                 </a>
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-google"></i>
+                                    <FontAwesomeIcon icon={faGoogle} />
                                 </a>
                                 <a href="#" className="social-icon">
-                                    <i className="fab fa-linkedin-in"></i>
+                                    <FontAwesomeIcon icon={faLinkedinIn} />
                                 </a>
                             </div>
                         </form>
@@ -91,7 +189,7 @@ const Login = () => {
                                 Sign up
                             </button>
                         </div>
-                        <img src={logo} className="image" alt="" />
+                        <img src={logo} className="image" alt="Logo" />
                     </div>
                     <div className="panel right-panel">
                         <div className="content">
@@ -101,7 +199,7 @@ const Login = () => {
                                 Sign in
                             </button>
                         </div>
-                         <img src={registerImage} className="image" alt="" /> 
+                        <img src={registerImage} className="image" alt="Register" />
                     </div>
                 </div>
             </div>

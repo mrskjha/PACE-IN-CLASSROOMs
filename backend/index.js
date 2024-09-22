@@ -1,10 +1,14 @@
 const express  = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-
+const core = require('cors')
 const app = express()
-const PORT = 3000
+app.use(core()); // Reverted back to 'core'
+
+
+const PORT = 5000;
 const {mogoUrl} = require('./keys')
+
 
 
 require('./models/User');
