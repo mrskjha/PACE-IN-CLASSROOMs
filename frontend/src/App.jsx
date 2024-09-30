@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ParticleRing from "./components/particeRing";
 import { World } from "./components/World"; // Assuming your globe logic is in World component
-
+import About from "./components/About";
 function App() {
   const globeConfig = {
     globeColor: "#640D5F",
@@ -50,8 +50,7 @@ function App() {
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <World globeConfig={globeConfig}  data={globeData}/>
       </div>
-     
-    </div>
+     <About /></div>
   );
 }
 
