@@ -182,7 +182,7 @@ export function World({ globeConfig }) {
       <Canvas 
         scene={scene} 
         camera={new PerspectiveCamera(50, aspectRatio, 180, 1800)} 
-        className="w-full h-full" // Full screen
+        className="w-full h-full" 
       >
         <WebGLRendererConfig />
         <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
