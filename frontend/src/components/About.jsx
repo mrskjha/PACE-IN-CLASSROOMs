@@ -20,9 +20,9 @@ const About = () => {
           <div className="flex flex-col md:flex-row items-center">
            
             <div className="w-full md:w-1/2 flex justify-center">
-              <div className="rounded-full overflow-hidden border-4 border-black bg-indigo-900">
+              <div className="rounded-full overflow-hidden border-4 border-black ">
                 <img
-                  src="\src\assets\home1.png"
+                  src="\src\assets\satellite.png"
                   alt="Modern Home"
                   className="object-cover h-72 w-72"
                 />

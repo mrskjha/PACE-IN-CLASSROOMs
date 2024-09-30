@@ -4,6 +4,8 @@ import { useState } from "react";
 import ParticleRing from "./components/particeRing";
 import { World } from "./components/World"; // Assuming your globe logic is in World component
 import About from "./components/About";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 function App() {
   const globeConfig = {
     globeColor: "#640D5F",
@@ -50,9 +52,21 @@ function App() {
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <World globeConfig={globeConfig}  data={globeData}/>
       </div>
+
+
       <ParticleRing />
       <div className="absolute top-[100%] w-full h-full z-10  "><About /></div>
+      <ParticleRing />
+      
+      
+      <div className="absolute top-[200%] w-full h-full z-10  "><Contact /></div>
+
+      
+
      </div>
+
+
+
   );
 }
 
