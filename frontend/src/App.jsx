@@ -5,7 +5,6 @@ import NewEvents from './components/NewEvents';
 import Footer from './components/Footer';
 import Login from './components/login';
 import Learning from './components/Learning';
-import ColorPalette from './components/color';
 import Quiz from './components/Quiz';
 
 export const App = () => {
@@ -23,7 +22,6 @@ export const App = () => {
     <Header />
     <Learning />
     <Quiz/>
-    <ColorPalette/>
     <NewEvents/>
     <Footer />
     
