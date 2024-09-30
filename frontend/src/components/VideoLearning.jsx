@@ -9,7 +9,7 @@ import { SiSpacex } from "react-icons/si";
 import { FiArrowRight, FiMapPin } from "react-icons/fi";
 import { useRef } from "react";
 
-export const Learning = () => {
+export const VideoLearning = () => {
   return (
     <div className="bg-zinc-950">
       <ReactLenis
