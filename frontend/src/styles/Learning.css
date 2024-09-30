@@ -1,0 +1,56 @@
+/* For Flip Card */
+.flip-card-container {
+    perspective: 1000px;
+  }
+  
+  .flip-card {
+    width: 320px;
+    height: 320px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    position: relative;
+  }
+  
+  .flipped .flip-card {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+  
+  .flip-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* RGB Border Animation */
+  @keyframes space-ocean-border {
+      0% {
+          border-color: rgb(255, 0, 0); /* Red */
+      }
+      33% {
+          border-color: rgb(0, 255, 0); /* Green */
+      }
+      66% {
+          border-color: rgb(0, 0, 255); /* Blue */
+      }
+      100% {
+          border-color: rgb(255, 0, 0); /* Red */
+      }
+  }
+  
+  .moving-rgb-border {
+      border: 4px solid rgb(255, 0, 0);
+      border-radius: 8px;
+      animation: space-ocean-border 3s infinite;
+  }
+  
