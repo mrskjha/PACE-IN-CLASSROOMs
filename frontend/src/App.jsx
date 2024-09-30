@@ -50,7 +50,9 @@ function App() {
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <World globeConfig={globeConfig}  data={globeData}/>
       </div>
-     <About /></div>
+      <ParticleRing />
+      <div className="absolute top-[100%] w-full h-full z-10  "><About /></div>
+     </div>
   );
 }
 
