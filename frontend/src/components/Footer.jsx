@@ -56,16 +56,16 @@ const Footer = () => {
         </div>
 
         <div className="flex space-x-8">
-          <a href="https://twitter.com" aria-label="Twitter">
+          <a href="https://twitter.com" aria-label="Twitter" >
             <FontAwesomeIcon icon={faTwitter} className="text-white text-2xl hover:text-blue-500" />
           </a>
-          <a href="https://x.com" aria-label="X">
+          <a href="https://x.com" aria-label="X" >
             <FontAwesomeIcon icon={faXTwitter} className="text-white text-2xl hover:text-gray-500" />
           </a>
-          <a href="https://telegram.org" aria-label="Telegram">
+          <a href="https://telegram.org" aria-label="Telegram" >
             <FontAwesomeIcon icon={faTelegram} className="text-white text-2xl hover:text-blue-400" />
           </a>
-          <a href="https://facebook.com" aria-label="Facebook">
+          <a href="https://facebook.com" aria-label="Facebook" >
             <FontAwesomeIcon icon={faFacebook} className="text-white text-2xl hover:text-blue-600" />
           </a>
         </div>
