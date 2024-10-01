@@ -5,10 +5,9 @@ import ParticleRing from "./components/particeRing";
 import { World } from "./components/World"; // Assuming your globe logic is in World component
 import About from "./components/About";
 import Contact from "./components/Contact";
-import LightFundamentals from "./components/LightFundamentals";
-import SquishyCard from "./components/Couses";
+// import LightFundamentals from "./components/LightFundamentals";
 
-
+import Navbar from "./components/Navbar";
 function App() {
   const globeConfig = {
     globeColor: "#640D5F",
@@ -50,6 +49,7 @@ function App() {
     <div className="relative w-screen h-screen">
    
       {/* Particle Ring as background */}
+     <Navbar />
       <ParticleRing />
       
       {/* Main Content */}
@@ -68,9 +68,9 @@ function App() {
       {/* <ParticleRing />
       <div className="absolute top-[300%] w-full h-full z-10"><Service /></div>
       <Learning /> */}
-      <ParticleRing />
+      {/* <ParticleRing />
       
-      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div>
+      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
 
      
      </div>
