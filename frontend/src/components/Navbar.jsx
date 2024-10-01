@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-
+import Login from "./login";
 const Navbar = () => {
   return (
     <nav>
@@ -10,8 +10,8 @@ const Navbar = () => {
         </div>
         <div className='col-start-2 col-end-9'>
         <ul className='flex flex-row gap-10 w-full h-full text-slate-800 font-normal text-sm opacity-90'>
-            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900"><Link to='/'>Home</Link></li>
-            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900"><Link to='/datavisulisation'>Data Visulisation</Link></li>
+            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900">Home</li>
+            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900">Data Visulisation</li>
             <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900">Learning Materials</li>
             <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900">Phytoplankton</li>
             <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:text-extrabold hover:text-xl hover:text-indigo-900">Contact us</li>

@@ -1,0 +1,46 @@
+.light-fundamentals-container {
+    background-color: #f0f4f8; /* Light background for contrast */
+    color: #333;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #ffffff; /* White background for sections */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  
+  h2 {
+    color: #2c3e50; /* Darker color for section titles */
+  }
+  
+  .section-image {
+    width: 100%;
+    max-width: 400px; /* Maximum width */
+    border-radius: 8px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn {
+    background-color: #11eee3; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
