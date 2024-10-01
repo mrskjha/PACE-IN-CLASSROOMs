@@ -20,7 +20,6 @@
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.8",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.9.0",
     "lenis": "^1.1.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

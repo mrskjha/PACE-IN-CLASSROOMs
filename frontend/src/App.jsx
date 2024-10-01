@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import LightFundamentals from "./components/LightFundamentals";
 import SquishyCard from "./components/Couses";
 
+
 function App() {
   const globeConfig = {
     globeColor: "#640D5F",
@@ -47,6 +48,7 @@ function App() {
 
   return (
     <div className="relative w-screen h-screen">
+   
       {/* Particle Ring as background */}
       <ParticleRing />
       
@@ -62,13 +64,13 @@ function App() {
       
       
       <div className="absolute top-[200%] w-full h-full z-10  "><Contact /></div>
-      <div className="absolute top-[200%] w-full h-full z-10  "> <LightFundamentals/></div>
+      {/* <div className="absolute top-[200%] w-full h-full z-10  "> <LightFundamentals/></div> */}
       {/* <ParticleRing />
       <div className="absolute top-[300%] w-full h-full z-10"><Service /></div>
       <Learning /> */}
-      {/* <ParticleRing />
+      <ParticleRing />
       
-      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
+      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div>
 
      
      </div>

@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
-import satelliteImage from '../assets/Phytoplankton.png';
-import homeImage from '../assets/home1.png';
+import satelliteImage from '../assets/Quiz1.png';
+import homeImage from '../assets/Data visualization2.png';
 import learningImage from '../assets/LearningMaterial.png';
 
 const SquishyCard = () => {
@@ -10,11 +9,10 @@ const SquishyCard = () => {
         {/* First Card */}
         <Card
           id="#1"
-          role="Lerning"
+          role="Learning"
           role1="Materials"
-
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-          imageUrl={learningImage} 
+          imageUrl={learningImage}
         />
         {/* Second Card */}
         <Card
@@ -25,124 +23,39 @@ const SquishyCard = () => {
         />
         {/* Third Card */}
         <Card
-          
           id="#3"
           role="Quiz"
           description="Advanced solutions for large businesses and enterprises."
-          imageUrl={satelliteImage} 
+          imageUrl={satelliteImage}
         />
       </div>
     </section>
   );
 };
 
-const Card = ({ id, role,role1, description, imageUrl }) => {
+const Card = ({ id, role, role1, description, imageUrl }) => {
   return (
-    <motion.div
-      whileHover="hover"
-      transition={{
-        duration: 1,
-        ease: "backInOut",
-      }}
-      variants={{
-        hover: {
-          scale: 1.05,
-        },
-      }}
-    
-      className="relative h-96 w-80 shrink-0 overflow-hidden rounded-xl bg-cover bg-center p-8  bg-black"
+    <div
+      className="relative h-96 w-80 shrink-0 overflow-hidden rounded-xl bg-cover bg-center p-8 bg-black"
       style={{
-       backgroundImage: `url('${imageUrl}')`, 
+        backgroundImage: `url('${imageUrl}')`, 
       }}
     >
-      <div className="relative z-10 text-white ">
+      <div className="relative z-10 text-white">
         <span className="mb-3 block w-fit rounded-full bg-white/30 px-3 py-0.5 text-sm font-light text-white">
           {id}
         </span>
-        <motion.span
-          initial={{ scale: 0.85 }}
-          variants={{
-            hover: {
-              scale: 1,
-            },
-          }}
-          transition={{
-            duration: 1,
-            ease: "backInOut",
-          }}
-          className="my-2 block origin-top-left font-mono text-6xl font-black leading-[1.2] "
-        >
+        <div className="my-2 block origin-top-left font-mono text-6xl font-black leading-[1.2]">
           {role}
           <br />
           {role1}
-          
-         
-        </motion.span>
+        </div>
         <p>{description}</p>
       </div>
       <button className="absolute bottom-4 left-4 right-4 z-20 rounded border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur transition-colors hover:bg-white/30 hover:text-white">
         Explore now
       </button>
-      <Background />
-    </motion.div>
-  );
-};
-
-const Background = () => {
-  return (
-    <motion.svg
-      width="320"
-      height="384"
-      viewBox="0 0 320 384"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute inset-0 z-0"
-      variants={{
-        hover: {
-          scale: 1.5,
-        },
-      }}
-      transition={{
-        duration: 1,
-        ease: "backInOut",
-      }}
-    >
-      <motion.circle
-        variants={{
-          hover: {
-            scaleY: 0.5,
-            y: -25,
-          },
-        }}
-        transition={{
-          duration: 1,
-          ease: "backInOut",
-          delay: 0.2,
-        }}
-        cx="160.5"
-        cy="114.5"
-        r="101.5"
-        fill="#262626"
-      />
-      <motion.ellipse
-        variants={{
-          hover: {
-            scaleY: 2.25,
-            y: -25,
-          },
-        }}
-        transition={{
-          duration: 1,
-          ease: "backInOut",
-          delay: 0.2,
-        }}
-        cx="160.5"
-        cy="265.5"
-        rx="101.5"
-        ry="43.5"
-        fill="#262626"
-      />
-    </motion.svg>
+    </div>
   );
 };
 
