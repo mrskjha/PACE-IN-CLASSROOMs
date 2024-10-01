@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 // import LightFundamentals from "./components/LightFundamentals";
 
 import Navbar from "./components/Navbar";
+import SquishyCard from "./components/Couses";
 function App() {
   const globeConfig = {
     globeColor: "#6439FF",
@@ -63,14 +64,14 @@ function App() {
       <ParticleRing />
       
       
-      <div className="absolute top-[200%] w-full h-full z-10  "><Contact /></div>
+      <div className="absolute top-[200%] w-full h-full z-10  "><SquishyCard /></div> 
+      <div className="absolute top-[300%] w-full h-full z-10  "><Contact /></div>
       {/* <div className="absolute top-[200%] w-full h-full z-10  "> <LightFundamentals/></div> */}
       {/* <ParticleRing />
       <div className="absolute top-[300%] w-full h-full z-10"><Service /></div>
       <Learning /> */}
-      {/* <ParticleRing />
+       <ParticleRing />
       
-      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
 
      
      </div>
