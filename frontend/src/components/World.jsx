@@ -11,7 +11,7 @@ extend({ ThreeGlobe });
 
 const RING_PROPAGATION_SPEED = 3;
 const aspectRatio = window.innerWidth / window.innerHeight; // Update for full screen
-const cameraZPosition = 300;
+const cameraZPosition = 400; // Adjusted camera position
 
 export function GlobeVisualization({ globeConfig, arcData }) {
   const [globePointsData, setGlobePointsData] = useState(null);
@@ -23,7 +23,7 @@ export function GlobeVisualization({ globeConfig, arcData }) {
     showAtmosphere: true,
     atmosphereAltitude: 0.1,
     polygonColor: "rgba(255,255,255,0.7)",
-    globeColor: globeConfig.globeColor || "#640D5F", // Control globe color through prop
+    globeColor: globeConfig.globeColor || "#640D5F", // Control globe color
     emissiveColor: "#000000",
     emissiveIntensity: 0.1,
     shininess: 0.9,
@@ -31,6 +31,7 @@ export function GlobeVisualization({ globeConfig, arcData }) {
     arcLength: 0.9,
     rings: 1,
     maxRings: 3,
+    globeScale: globeConfig.globeScale || 0.5, // Reduced globe scale
     ...globeConfig,
   };
 
@@ -146,7 +147,12 @@ export function GlobeVisualization({ globeConfig, arcData }) {
     };
   }, [globeInstanceRef.current, globePointsData]);
 
-  return <threeGlobe ref={globeInstanceRef} />; // Adjusted globe position to the right
+  return (
+    <threeGlobe 
+      ref={globeInstanceRef} 
+      globeScale={defaultConfig.globeScale} // Apply the globe scale
+    />
+  );
 }
 
 export function WebGLRendererConfig() {
@@ -162,26 +168,33 @@ export function WebGLRendererConfig() {
 }
 
 export function World({ globeConfig }) {
+  const defaultGlobeConfig = {
+    ...globeConfig,
+    globeScale: 0.3, // Further reduced size to 0.3
+  };
+
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
 
   return (
-    <div className="w-screen h-screen flex  bg-none "> {/* Full screen */}
+    <div className="w-screen h-screen flex bg-none"> {/* Full screen */}
       {/* Heading and Paragraph on the Left Side */}
-      <div className="flex flex-col justify-center mr-5 text-white  px-4 w-[700px] ">
-        <h1 className="text-2xl font-bold mb-2 text-white ml-5">Start Exploring PACE Data Today!</h1>
-        <p className="text-md mb-4  ">
-          We are glad you are here , pace is new earth observing satellite
+      <div className="flex flex-col justify-center mr-5 text-white px-[100px] w-[900px] ">
+        <h1 className="text-violet-950 text-4xl font-bold mb-1">PACE</h1>
+        <h1 className="text-2xl font-bold mb-2 text-white ">Start Exploring PACE Data Today!</h1>
+        <p className="text-md mb-2">
+          We are glad you are here, pace is a new earth observing satellite.
         </p>
         <div>
-      <button className=' uppercase bg-gray-800 top-[30%] text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 ml-[20%] mt-7'>
-      Explore</button>
-</div>
+          <button className='uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-1'>
+            Explore
+          </button>
+        </div>
       </div>
 
       <Canvas 
         scene={scene} 
-        camera={new PerspectiveCamera(50, aspectRatio, 180, 1800)} 
+        camera={new PerspectiveCamera(50, aspectRatio, 100, 2000)} // Adjusted camera field of view and position
         className="w-full h-full" 
       >
         <WebGLRendererConfig />
@@ -199,44 +212,14 @@ export function World({ globeConfig }) {
           position={new Vector3(-200, 500, 200)}
           intensity={0.8}
         />
-        <GlobeVisualization globeConfig={globeConfig} arcData={globeConfig.arcData} />
+        <GlobeVisualization globeConfig={defaultGlobeConfig} arcData={globeConfig.arcData} />
         <OrbitControls
           enablePan={false}
           enableZoom={false}
           minDistance={cameraZPosition}
-          maxDistance={cameraZPosition}
-          autoRotateSpeed={1}
-          autoRotate={true}
-          minPolarAngle={Math.PI / 3.5}
-          maxPolarAngle={Math.PI - Math.PI / 3}
+          maxDistance={1000} // Increased max distance to allow for better perspective
         />
       </Canvas>
     </div>
   );
-}
-
-// Utility to convert hex to RGB
-function hexToRgb(hex) {
-  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
-
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
-    : null;
-}
-
-// Utility to generate random numbers for rings
-function genRandomNumbers(min, max, count) {
-  const numbers = new Set();
-  
-
-  while (result.size < count) {
-    result.add(Math.floor(Math.random() * (max - min)) + min);
-  }
-  return Array.from(result);
 }
