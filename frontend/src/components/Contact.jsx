@@ -1,4 +1,4 @@
-import Spline from '@splinetool/react-spline';
+
 import Footer from './Footer';
 
 const Contact = () => {
@@ -72,14 +72,11 @@ const Contact = () => {
           </form>
         </div>
 
-        {/* Right Section: 3D Rocket Model */}
+       
         <div className="w-full lg:w-1/2 flex items-center justify-center mt-9 ml-9">
           <div className="w-3/4 h-96 border-4 border-black rounded-lg flex items-center justify-center">
-            {/* Spline Rocket Model */}
-            <Spline
-                    scene="https://prod.spline.design/bFJow0Csseupeodc/scene.splinecode" 
-
-            />
+           {/* <video></video> */}
+            
           </div>
         </div>
        

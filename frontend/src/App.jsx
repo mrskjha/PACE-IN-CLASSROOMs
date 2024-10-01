@@ -6,6 +6,7 @@ import { World } from "./components/World"; // Assuming your globe logic is in W
 import About from "./components/About";
 import Contact from "./components/Contact";
 import LightFundamentals from "./components/LightFundamentals";
+import SquishyCard from "./components/Couses";
 
 function App() {
   const globeConfig = {
@@ -65,7 +66,11 @@ function App() {
       {/* <ParticleRing />
       <div className="absolute top-[300%] w-full h-full z-10"><Service /></div>
       <Learning /> */}
+      {/* <ParticleRing />
+      
+      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
 
+     
      </div>
 
 
