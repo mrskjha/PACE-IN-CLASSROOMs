@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import ParticleRing from "./components/particeRing";
-import { World } from "./components/World"; // Assuming your globe logic is in World component
+import {World} from "./components/World"; // Assuming your globe logic is in World component
 import About from "./components/About";
 import Contact from "./components/Contact";
 // import LightFundamentals from "./components/LightFundamentals";
@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 function App() {
   const globeConfig = {
-    globeColor: "#640D5F",
+    globeColor: "#6439FF",
     ambientLight: "#ffffff",
     directionalLeftLight: "#fff",
     directionalTopLight: "#aaa",
