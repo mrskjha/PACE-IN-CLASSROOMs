@@ -1,17 +1,48 @@
+
 # Project Name  
-**Satellite Data Visualization Tool**
+(Bad me bataunga kya hai project ka naam)
 
 ## Features
-- Fetch and visualize satellite data to analyze environmental changes and patterns.
-- Interactive maps displaying various data points over time.
-- User-friendly interface for exploring different datasets related to climate, vegetation, and more.
-- Downloadable reports and visualizations for further analysis.
+- Satellite sei data lana or padhana  
+(Baki bad me)
 
 ## Getting Started
-To get a local copy up and running, follow these simple steps.
+(Abhi bana nahi hai)
 
 ## Prerequisites
-- Laptop or desktop with internet access
-- Node.js (v14 or later)
-- npm (comes with Node.js)
+- Laptop  
+(Baki khud se pata karo)
 
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-project-name.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd your-project-name
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Run the app:
+   ```bash
+   npm start
+   ```
+
+## Project Structure
+(bhai kr hi to rha hu)
+
+## Contributing
+(Banne toh do)
+
+## License
+No license, you can steal it.
+
+## Acknowledgments
+(Kisi ko nahi karunga)
