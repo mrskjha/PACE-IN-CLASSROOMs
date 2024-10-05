@@ -1,0 +1,100 @@
+{
+    "quizzes": [
+      {
+        "question": "What does PACE stand for?",
+        "options": [
+          "Plankton Aerosol Cloud Ocean Ecosystem",
+          "Polar Aerosol Cloud Ocean Ecosystem",
+          "Planetary Aerosol Cloud Observation Environment",
+          "Plankton Atmospheric Cloud Observation Ecosystem"
+        ],
+        "correct": "Plankton Aerosol Cloud Ocean Ecosystem"
+      },
+      {
+        "question": "What is the main purpose of the PACE mission?",
+        "options": [
+          "To explore outer space",
+          "To study plankton, aerosols, and clouds to understand Earth’s climate",
+          "To monitor sea level rise",
+          "To study tectonic movements"
+        ],
+        "correct": "To study plankton, aerosols, and clouds to understand Earth’s climate"
+      },
+      {
+        "question": "Which of the following instruments is used on the PACE mission?",
+        "options": [
+          "Hyperspectral Ocean and Atmosphere Spectrometer (HYPER-OAS)",
+          "Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER)",
+          "Mars Reconnaissance Orbiter (MRO)",
+          "Cloud Profiling Radar"
+        ],
+        "correct": "Hyperspectral Ocean and Atmosphere Spectrometer (HYPER-OAS)"
+      },
+      {
+        "question": "What type of data is PACE expected to collect?",
+        "options": [
+          "Ocean color, aerosols, and clouds data",
+          "Data on human activity in space",
+          "Measurements of polar ice",
+          "Data on volcanic activity"
+        ],
+        "correct": "Ocean color, aerosols, and clouds data"
+      },
+      {
+        "question": "Which of the following areas is *not* a focus of the PACE mission?",
+        "options": [
+          "Ocean biology",
+          "Climate change",
+          "Mars exploration",
+          "Air quality monitoring"
+        ],
+        "correct": "Mars exploration"
+      },
+      {
+        "question": "PACE will help scientists study the interactions between which components?",
+        "options": [
+          "Plankton, Aerosols, and Clouds",
+          "Mountains, Rivers, and Forests",
+          "Ocean Currents, Glaciers, and Winds",
+          "Planets, Moons, and Stars"
+        ],
+        "correct": "Plankton, Aerosols, and Clouds"
+      },
+      {
+        "question": "When is the PACE satellite expected to launch?",
+        "options": ["2024", "2022", "2020", "2025"],
+        "correct": "2024"
+      },
+      {
+        "question": "Why is PACE important for studying climate change?",
+        "options": [
+          "It will measure gases in the upper atmosphere",
+          "It will provide detailed data on plankton, aerosols, and clouds, which influence Earth's climate",
+          "It will track global deforestation",
+          "It will map the ocean floor"
+        ],
+        "correct": "It will provide detailed data on plankton, aerosols, and clouds, which influence Earth's climate"
+      },
+      {
+        "question": "How will PACE contribute to oceanography?",
+        "options": [
+          "By tracking marine animals",
+          "By measuring ocean color and understanding biological activity in the ocean",
+          "By exploring underwater volcanoes",
+          "By mapping ocean floor geography"
+        ],
+        "correct": "By measuring ocean color and understanding biological activity in the ocean"
+      },
+      {
+        "question": "What is one unique capability of PACE's instruments?",
+        "options": [
+          "It can measure ocean color at high spectral resolution",
+          "It can drill into the ocean floor",
+          "It can detect life on other planets",
+          "It can track asteroids"
+        ],
+        "correct": "It can measure ocean color at high spectral resolution"
+      }
+    ]
+  }
+  
