@@ -1,45 +1,60 @@
-
-
+import { Link } from "react-router-dom";
+import { useAuth } from './AuthContext'; // import the useAuth hook
 
 const Navbar = () => {
-  return (
-    <nav>
-    <div className='w-full bg-black h-20 grid grid-cols-10 gap-1 overflow-hidden px-2 '>
-        <div className='flex justify-between items-center'>
-            <h5 className='text-bolder text-white text-2xl ml-5 font-semibold'>PACE</h5>
-        </div>
-        <div className='col-start-2 col-end-9'>
-        <ul className='flex flex-row gap-10 w-full h-full text-white font-normal text-sm opacity-90'>
-           <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:font-extrabold hover:text-xl hover:text-indigo-900">Home</li>
-            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:font-extrabold hover:text-xl hover:text-indigo-900">Data Visulisation</li>
-            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:font-extrabold hover:text-xl hover:text-indigo-900">Learning Materials</li>
-            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:font-extrabold hover:text-xl hover:text-indigo-900">Phytoplankton</li>
-            <li className="flex items-center hover:cursor-pointer hover:border-b-4 hover:border-indigo-500 hover:font-extrabold hover:text-xl hover:text-indigo-900">Contact us</li>
-        </ul>
-        
+    const { isAuthenticated, logout } = useAuth(); // get the authentication state and logout function
+
+    return (
+        <nav className='w-full bg-transparent h-20 flex justify-between items-center px-5 z-50 fixed top-0'>
+            <h5 className='text-bolder text-white text-2xl font-semibold transition-transform transform hover:scale-105'>
+                PACE
+            </h5>
             
-        </div>
-        <div className="relative flex justify-center items-center gap-6 p-4">
- 
-  <button className=" text-indigo-600 font-semibold py-1 px-10 rounded-[5%] hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out shadow-lg">
-    SignUp
-  </button>
-  
-  
-  <button className="bg-transparent bg-blue-500 text-blue-500 font-semibold py-1 px-10 rounded-[5%] border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out shadow-lg">
-    Login
-  </button>
-  
+            <div className='flex-grow'>
+                <ul className='flex justify-center space-x-10 text-white text-xl font-bold opacity-90'>
+                    <li>
+                        <Link to="/" className="flex items-center relative group hover:font-extrabold hover:text-indigo-900 transition-colors duration-300">
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/courses" className="flex items-center relative group hover:font-extrabold hover:text-indigo-900 transition-colors duration-300">
+                            Learning Materials
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/contact" className="flex items-center relative group hover:font-extrabold hover:text-indigo-900 transition-colors duration-300">
+                            Contact Us
+                        </Link>
+                    </li>
+                </ul>
+            </div>
 
-</div>
-
-
-    </div>
-      
-    </nav> 
-  );
+            <div className="flex items-center gap-4">
+                {!isAuthenticated ? (
+                    <>
+                        <button className="text-indigo-600 font-semibold py-1 px-4 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                            Sign Up
+                        </button>
+                        <Link to="/login">
+                            <button className="bg-transparent text-blue-500 font-semibold py-1 px-4 rounded border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
+                                Login
+                            </button>
+                        </Link>
+                    </>
+                ) : (
+                    <button 
+                        className="bg-red-600 text-white font-semibold py-1 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
+                        onClick={() => {
+                            logout(); // Call the logout function
+                        }}
+                    >
+                        Logout
+                    </button>
+                )}
+            </div>
+        </nav>
+    );
 };
 
 export default Navbar;
-
-  

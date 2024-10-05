@@ -1,14 +1,28 @@
-
-import { useEffect } from "react";
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ParticleRing from "./components/particeRing";
-import {World} from "./components/World"; // Assuming your globe logic is in World component
+import { World } from "./components/World";
 import About from "./components/About";
 import Contact from "./components/Contact";
+
 // import LightFundamentals from "./components/LightFundamentals";
 import Login from "./components/login";
 import Navbar from "./components/Navbar";
 import Teacher from "./components/Teacher"
+
+import Navbar from "./components/Navbar";
+import SquishyCard from "./components/Couses";
+import Phytoplankton from "./components/Phytoplankton";
+import OwnPace from "./components/OwnPace";
+import { VideoLearning } from "./components/VideoLearning";
+import Login from "./components/Login";
+import { AuthProvider, useAuth } from "./components/AuthContext";
+import LightFundamentals from "./components/LightFundamentals";
+import Footer from "./components/Footer";
+import VideoCources from "./components/VideoCources";
+import GoogleMap from "./components/GoogleMap";
+
+
 function App() {
   const globeConfig = {
     globeColor: "#282888",
@@ -16,18 +30,19 @@ function App() {
     directionalLeftLight: "#fff",
     directionalTopLight: "#aaa",
     pointLight: "#fff",
-    arcData: [/* Globe arc data here */]
+    arcData: [],
   };
-  const [globeData, setGlobeData] = useState([]);
 
-  // Mock some data for the globe arcs
+  const [globeData, setGlobeData] = useState([]);
+  // Remove useAuth() from here; it will be called inside the routes
+
   useEffect(() => {
     const data = [
       {
         startLat: 37.7749,
         startLng: -122.4194,
         endLat: 40.7128,
-        endLng: -74.0060,
+        endLng: -74.006,
         color: "#ff0000",
         arcAlt: 0.3,
         order: 1,
@@ -41,45 +56,69 @@ function App() {
         arcAlt: 0.3,
         order: 2,
       },
-      // Add more arcs as needed
     ];
     setGlobeData(data);
   }, []);
 
   return (
-    <div className="relative w-screen h-screen">
-   
-      {/* Particle Ring as background */}
-     <Navbar />
-      <ParticleRing />
-      
-      {/* Main Content */}
-      <div className="absolute top-0 left-0 w-full h-full z-10">
-        <World globeConfig={globeConfig}  data={globeData}/>
-      </div>
 
-
-      <ParticleRing />
-      <div className="absolute top-[100%] w-full h-full z-10  "><About /></div>
-      <ParticleRing />
-      
-      
-      <div className="absolute top-[200%] w-full h-full z-10  "><Contact /></div>
-      {/* <div className="absolute top-[200%] w-full h-full z-10  "> <LightFundamentals/></div> */}
-      {/* <ParticleRing />
-      <div className="absolute top-[300%] w-full h-full z-10"><Service /></div>
-      <Learning /> */}
-      {/* {/* <ParticleRing />
-      
-      {/* <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
-      <Login />
-     <Teacher />
-     
-     </div>
-
-
-
+    <AuthProvider>
+      <Router>
+        <div className="relative w-screen h-screen">
+          <ParticleRing className="absolute inset-0 z-0" />
+          <Navbar className="z-10 text-black" />
+          <>
+            <AuthRoutes globeConfig={globeConfig} globeData={globeData} />
+            <ParticleRing />
+            <div>
+              <About className="absolute top-[400%] w-full h-full z-10 " />
+            </div>
+            <ParticleRing />
+            <SquishyCard className="absolute top-[200%] w-full h-full z-10  " />
+            <GoogleMap />
+            <Footer />
+          </>
+          {/* <ParticleRing className="absolute inset-0  z-0" /> */}
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
+
+
+// New component to handle routes and authentication
+const AuthRoutes = ({ globeConfig, globeData }) => {
+  const { isAuthenticated } = useAuth(); // Get authentication state
+
+  return (
+    <div className="absolute top-0 left-0 w-full h-full z-10">
+      {isAuthenticated ? (
+        <Routes>
+          <Route
+            path="/"
+            element={<World globeConfig={globeConfig} data={globeData} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/courses" element={<SquishyCard />} />
+          <Route path="/maps" element={<GoogleMap />} />
+          <Route
+            path="/learning/lightfundamentals"
+            element={
+              <>
+                <LightFundamentals /> <VideoCources />
+              </>
+            }
+          />
+          <Route path="/learning/phytoplankton" element={<Phytoplankton />} />
+          <Route path="/learning/ownpace" element={<OwnPace />} />
+          <Route path="/video-learning" element={<VideoLearning />} />
+        </Routes>
+      ) : (
+        <Login />
+      )}
+    </div>
+  );
+};
 
 export default App;

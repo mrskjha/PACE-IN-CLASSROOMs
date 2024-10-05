@@ -108,7 +108,7 @@ function LightFundamentals() {
   }, [expandedSections]);
 
   return (
-    <div className="p-4 bg-black text-white pl-16">
+    <div className="p-4 bg-black text-white pl-16  pt-24">
       <h1 className="text-4xl font-bold text-blue-800 mb-6 text-center">
         Fundamental Properties of Light
       </h1>

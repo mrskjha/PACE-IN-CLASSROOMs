@@ -6,15 +6,15 @@ const About = () => {
           <div className="w-full h-screen">
       
   
-  
+
    
       <div className=" text-white min-h-screen flex flex-col items-center justify-center">
         <div className="relative max-w-5xl mx-auto p-8">
         
-          <div className="absolute top-0 left-[-30%] w-32 h-32 rounded-full border-4 border-purple-900 bg-transparent" ><img src="\src\assets\home1.png"></img></div>
+          <div className="absolute top-0 left-[-30%] w-32 h-32 ml-16 rounded-full border-4 border-purple-900 bg-transparent" ><img src="\src\assets\home1.png"></img></div>
               
           
-          <div className="absolute bottom-0 right-[-30%] w-32 h-32 rounded-full border-4 border-purple-900 bg-transparent" ><img src="\src\assets\home1.png"></img></div>
+          <div className="absolute top-96 right-[-30%] w-32  h-32 mr-24 rounded-full border-4 border-purple-900 bg-transparent" ><img src="\src\assets\home1.png"></img></div>
           
           
           <div className="flex flex-col md:flex-row items-center">

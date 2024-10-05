@@ -16,7 +16,7 @@ const Footer = () => {
             className="bg-purple-900 text-white px-4 py-2 rounded-md"
           >
             <option value="en">English</option>
-            <option value="hindi">Hindi</option>
+            {/* <option value="hindi">Hindi</option> */}
           </select>
         </div>
 
@@ -38,7 +38,7 @@ const Footer = () => {
 
       
       <div className=" text-center text-white">
-        <h6>© 2024 Brand, Inc. Privacy Terms Sitemap</h6>
+
       </div>
     </div>
   );

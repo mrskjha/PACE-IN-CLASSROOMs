@@ -15,6 +15,7 @@ const Header = () => {
       <h3 className='text-white text-2xl mt-7'>We are glad you are here , pace is new earth observing satellite</h3>
       <div>
       <button className='uppercase bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 ml-[40%] mt-7'>
+       
       Explore</button>
       </div>
       </div>

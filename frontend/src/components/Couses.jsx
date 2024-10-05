@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
 import satelliteImage from '../assets/Quiz1.png';
 import homeImage from '../assets/Data visualization2.png';
 import learningImage from '../assets/LearningMaterial.png';
@@ -13,6 +14,7 @@ const SquishyCard = () => {
           role1="Materials"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
           imageUrl={learningImage}
+          link="/video-learning"
         />
         {/* Second Card */}
         <Card
@@ -27,13 +29,27 @@ const SquishyCard = () => {
           role="Quiz"
           description="Advanced solutions for large businesses and enterprises."
           imageUrl={satelliteImage}
+          link="https://pace.oceansciences.org/phyto_quiz.htm"
         />
       </div>
     </section>
   );
 };
 
-const Card = ({ id, role, role1, description, imageUrl }) => {
+const Card = ({ id, role, role1, description, imageUrl, link }) => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleClick = () => {
+    // Stop event propagation
+    if (link) {
+      if (link.startsWith("http")) {
+        window.open(link); // Open external link in a new tab
+      } else {
+        navigate(link); // Navigate to internal link in the same tab
+      }
+    }
+  };
+
   return (
     <div
       className="relative h-96 w-80 shrink-0 overflow-hidden rounded-xl bg-cover bg-center p-8 bg-black"
@@ -52,7 +68,7 @@ const Card = ({ id, role, role1, description, imageUrl }) => {
         </div>
         <p>{description}</p>
       </div>
-      <button className="absolute bottom-4 left-4 right-4 z-20 rounded border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur transition-colors hover:bg-white/30 hover:text-white">
+      <button className="absolute bottom-4 left-4 right-4 z-20 rounded border-2 border-white bg-white py-2 text-center font-mono font-black uppercase text-neutral-800 backdrop-blur transition-colors hover:bg-white/30 hover:text-white" onClick={handleClick}>
         Explore now
       </button>
     </div>
