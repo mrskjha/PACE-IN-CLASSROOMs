@@ -1,9 +1,12 @@
+import ParticleRing from "./particeRing"
 
 
 const About = () => {
     return (
+      <>
+      <ParticleRing  className=""/>
       <div>
-          <div className="w-full h-screen">
+          <div className=" absolute top-[100%] w-full h-screen ">
       
   
 
@@ -52,6 +55,7 @@ const About = () => {
   
           </div>
       </div>
+      </>
     )
   }
   
