@@ -6,11 +6,12 @@ import {World} from "./components/World"; // Assuming your globe logic is in Wor
 import About from "./components/About";
 import Contact from "./components/Contact";
 // import LightFundamentals from "./components/LightFundamentals";
-
+import Login from "./components/login";
 import Navbar from "./components/Navbar";
+import Teacher from "./components/Teacher"
 function App() {
   const globeConfig = {
-    globeColor: "#6439FF",
+    globeColor: "#282888",
     ambientLight: "#ffffff",
     directionalLeftLight: "#fff",
     directionalTopLight: "#aaa",
@@ -68,10 +69,11 @@ function App() {
       {/* <ParticleRing />
       <div className="absolute top-[300%] w-full h-full z-10"><Service /></div>
       <Learning /> */}
-      {/* <ParticleRing />
+      {/* {/* <ParticleRing />
       
-      <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
-
+      {/* <div className="absolute top-[300%] w-full h-full z-10  "><SquishyCard /></div> */}
+      <Login />
+     <Teacher />
      
      </div>
 
