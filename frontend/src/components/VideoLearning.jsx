@@ -77,13 +77,13 @@ const CenterImage = () => {
 
 const ParallaxImages = () => {
   return (
-    <div className="mx-auto max-w-5xl px-4 ">
+    <div className="mx-auto max-w-5xl px-4">
       <ParallaxImg
         src="https://pace.oceansciences.org/images/KSC-20240208-PH-SPX01_0007.jpg"
         alt="An example of a space launch"
         start={-200}
         end={200}
-        className="w-1/2 "
+        className="w-1/2"
       />
       <ParallaxImg
         src="https://pace.oceansciences.org/images/pace_overview_diagram_300.png"
@@ -104,7 +104,7 @@ const ParallaxImages = () => {
         alt="Orbiting satellite"
         start={0}
         end={-500}
-        className="ml-24 w-5/12 "
+        className="ml-24 w-5/12"
       />
     </div>
   );
@@ -137,7 +137,7 @@ const Schedule = () => {
   return (
     <section
       id="Start Learning"
-      className="mx-auto max-w-5xl px-4  text-white"
+      className="mx-auto max-w-5xl px-4 text-white"
     >
       <motion.h1
         initial={{ y: 40, opacity: 0 }}
@@ -147,15 +147,15 @@ const Schedule = () => {
       >
         Start Learning
       </motion.h1>
-      <ScheduleItem title="LightFundamentals" id="LightFundamentals"/>
-      <ScheduleItem title="Phytoplankton"id="Phytoplankton" />
-      <ScheduleItem title="OwnPace"id="OwnPace" />
-      <ScheduleItem title="fetchNASAData"id="Access PACE OCI Img" />
+      <ScheduleItem title="Light Fundamentals" path="LightFundamentals" />
+      <ScheduleItem title="Phytoplankton" path="Phytoplankton" />
+      <ScheduleItem title="Own Pace" path="OwnPace" />
+      <ScheduleItem title="Access PACE Data" path="fetchNASAData" />
     </section>
   );
 };
 
-const ScheduleItem = ({ title }) => {
+const ScheduleItem = ({ title, path }) => {
   return (
     <motion.div
       initial={{ y: 48, opacity: 0 }}
@@ -167,7 +167,7 @@ const ScheduleItem = ({ title }) => {
         <p className="mb-1.5 text-xl text-zinc-50">{title}</p>
       </div>
       <div>
-        <Link to={`/learning/${title.toLowerCase()}`}> {/* Adjust the route as needed */}
+        <Link to={`/learning/${path}`}> {/* Adjust the route as needed */}
           <button className="flex items-center text-white bg-teal-500 hover:bg-teal-600 px-4 py-2 rounded-lg transition-all duration-300">
             Start
           </button>
