@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    className:{
+        type:String,
+        required:true   
+    },
+    catagory:{
+        type:String,
+        required:true
     }
 })
 
