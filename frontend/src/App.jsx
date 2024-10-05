@@ -7,20 +7,19 @@ import Contact from "./components/Contact";
 
 // import LightFundamentals from "./components/LightFundamentals";
 import Login from "./components/login";
-import Navbar from "./components/Navbar";
-import Teacher from "./components/Teacher"
+
 
 import Navbar from "./components/Navbar";
 import SquishyCard from "./components/Couses";
 import Phytoplankton from "./components/Phytoplankton";
 import OwnPace from "./components/OwnPace";
 import { VideoLearning } from "./components/VideoLearning";
-import Login from "./components/Login";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import LightFundamentals from "./components/LightFundamentals";
 import Footer from "./components/Footer";
 import VideoCources from "./components/VideoCources";
 import GoogleMap from "./components/GoogleMap";
+import Teacher from "./components/Teacher";
 
 
 function App() {
@@ -75,6 +74,8 @@ function App() {
             </div>
             <ParticleRing />
             <SquishyCard className="absolute top-[200%] w-full h-full z-10  " />
+            <ParticleRing />
+            
             <GoogleMap />
             <Footer />
           </>
@@ -102,6 +103,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/courses" element={<SquishyCard />} />
           <Route path="/maps" element={<GoogleMap />} />
+          <Route path="/techer" element={<Teacher />} />
           <Route
             path="/learning/lightfundamentals"
             element={

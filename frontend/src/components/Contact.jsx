@@ -1,23 +1,7 @@
 
 
 
-          {/* Form */}
-          <form className="mt-8 space-y-4 ">
-            <div>
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2 hover:text-lg"
-                htmlFor="name"
-              >
-                Your name *
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-black"
-                placeholder="Your name"
-                required
-              />
-            </div>
+        
 
 
 

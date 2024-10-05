@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
-import { useAuth } from './AuthContext'; // import the useAuth hook
+import { useAuth } from './AuthContext';
+import Teacher from "./Teacher";
 
 const Navbar = () => {
-    const { isAuthenticated, logout } = useAuth(); // get the authentication state and logout function
+    const { isAuthenticated, logout } = useAuth();
 
+    console.log('Is Authenticated:', isAuthenticated);  // Log to check state
+
+    
     return (
         <nav className='w-full bg-transparent h-20 flex justify-between items-center px-5 z-50 fixed top-0'>
             <h5 className='text-bolder text-white text-2xl font-semibold transition-transform transform hover:scale-105'>
@@ -43,14 +47,21 @@ const Navbar = () => {
                         </Link>
                     </>
                 ) : (
-                    <button 
-                        className="bg-red-600 text-white font-semibold py-1 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
-                        onClick={() => {
-                            logout(); // Call the logout function
-                        }}
-                    >
-                        Logout
-                    </button>
+                    <>
+                        <button 
+                            className="bg-red-600 text-white font-semibold py-1 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
+                            onClick={() => {
+                                logout();
+                            }}
+                        >
+                            Logout
+                        </button>
+                    
+                            <button className="bg-transparent text-blue-500 font-semibold py-1 px-4 rounded border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out shadow-lg transform hover:scale-105" >
+                                Student Profiles 
+                            </button>
+                        
+                    </>
                 )}
             </div>
         </nav>

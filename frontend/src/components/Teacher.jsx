@@ -1,60 +1,60 @@
 import React, { useState, useEffect } from 'react';
 
 const Teacher = () => {
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState([]);  // Initialize students as an empty array
+  const [loading, setLoading] = useState(true);  // Add loading state
+  const [error, setError] = useState(null);      // Add error state
 
+  // Fetch student data from the API
   useEffect(() => {
-    fetch('/student.json')  // Corrected the path here
+    fetch('http://localhost:5000/students')  // Replace with your actual API
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then((data) => setStudents(data.students))
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((data) => {
+        setStudents(data || []);  // Set the students array (adjusted for your data format)
+        setLoading(false);  // Set loading to false
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div className="min-h-screen  bg-black">
+    <div className="min-h-screen bg-black z-50 ">
       {/* Navbar */}
-      
-
-      {/* Search and Filters */}
       <div className="flex justify-between px-6 py-4">
-        <input
-          type="text"
-          placeholder="Search by name, class, email..."
-          className="border border-gray-300 rounded-md px-4 py-2 w-full max-w-lg"
-        />
-        <button className=" border border-gray-300 rounded-md text-white px-4 py-2">
-          Select Class
-        </button>
-        <button className="ml-4 bg-purple-600 text-white rounded-md px-4 py-2">
-          Filter
-        </button>
+        <h1 className="text-white font-bold text-xl">Student Profiles</h1>
       </div>
 
       {/* Student Profiles */}
       <div className="px-6 py-4">
-        <h2 className="text-xl font-bold mb-4 text-white">Student Profiles</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Student Card */}
-          {students.length > 0 ? (
-            students.map((student) => (
-              <div key={student.id} className="border border-gray-300 rounded-md p-4 text-white">
-                <p className="font-semibold">{student.name}</p>
-                <p>Class: {student.class}</p>
-                <p>Attendance: {student.attendance}%</p>
-                <button className="mt-4 border border-purple-600 text-purple-600 rounded-md px-4 py-2 w-full">
-                  Send Message
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+        {loading ? (
+          <p className="text-white">Loading...</p>  // Show loading message
+        ) : error ? (
+          <p className="text-red-500">Error: {error}</p>  // Show error message
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {students.length > 0 ? (
+              students.map((student) => (
+                <div key={student._id} className="border border-gray-300 rounded-md p-4 text-white">
+                  <p className="font-semibold">Username: {student.username}</p>
+                  <p>Email: {student.email}</p>
+                  <p>Class: {student.className}</p>
+                  <button className="mt-4 border border-purple-600 text-purple-600 rounded-md px-4 py-2 w-full">
+                    View Details
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p className="text-white">No students available</p>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Add New Student Button */}
