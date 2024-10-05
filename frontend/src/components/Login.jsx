@@ -61,8 +61,12 @@ const Login = () => {
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sign Up Data:", signUpData);
-  
+    // Validation checks before submitting
+    if (!signUpData.username || !signUpData.email || !signUpData.password) {
+      alert("Please fill out all the required fields.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
@@ -72,10 +76,9 @@ const Login = () => {
         body: JSON.stringify(signUpData),
       });
       const data = await response.json();
-      console.log("Sign Up API Response:", data);
       if (data.success) {
         alert("Signed up successfully!");
-        setIsSignUp(false); // Switch to sign in after successful sign up
+        setIsSignUp(false); // Switch to sign in after successful sign-up
       } else {
         alert(data.error || "Sign up failed!");
       }
@@ -97,6 +100,7 @@ const Login = () => {
     <div className={`container ${isSignUp ? "sign-up-mode" : ""}`}>
       <div className="forms-container">
         <div className="signin-signup">
+          {/* Sign In Form */}
           <form
             onSubmit={handleSignInSubmit}
             className={`sign-in-form ${isSignUp ? "hidden" : ""}`}
@@ -142,6 +146,7 @@ const Login = () => {
             </div>
           </form>
 
+          {/* Sign Up Form */}
           <form
             onSubmit={handleSignUpSubmit}
             className={`sign-up-form ${isSignUp ? "" : "hidden"}`}
@@ -183,9 +188,9 @@ const Login = () => {
             <div className="input-field">
               <i className="fas fa-lock"></i>
               <input
-                type="text" // Change to text
+                type="text"
                 name="className"
-                placeholder="Class "
+                placeholder="Class (e.g. 9th)"
                 value={signUpData.className}
                 onChange={handleSignUpChange}
                 required

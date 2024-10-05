@@ -70,7 +70,7 @@ const Contact= () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center mt-9 ml-9">
         <div className="w-3/4 h-96 border-4 border-gray-700 rounded-lg  flex items-center justify-center">
           {/* Placeholder for 3D Animation/Image */}
-        <video src={videofile} className='w-full h-full object-cover rounded-lg' autoPlay loop controls muted  ></video>
+        <video src={videofile} className='w-full h-full object-cover rounded-lg' autoPlay loop  muted  ></video>
           <p className="text-white"></p>
         </div>
       </div>

@@ -17,6 +17,7 @@ import VideoCources from "./components/VideoCources";
 import GoogleMap from "./components/GoogleMap";
 import Teacher from "./components/Teacher";
 import FetchNASAData from "./components/FetchNASAData";
+import Game from "./components/Game";
 
 function App() {
   const globeConfig = {
@@ -105,6 +106,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/learning/ownpace" element={<OwnPace />} />
             <Route path="/learning/fetchNASAData" element={<FetchNASAData />} />
             <Route path="/video-learning" element={<VideoLearning className="z-50" />} />
+            <Route path="/game" element={<Game />} />
             <Route path="*" element={<Navigate to="/" />} />
           </>
         ) : (

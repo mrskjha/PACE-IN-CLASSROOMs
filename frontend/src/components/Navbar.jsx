@@ -52,13 +52,15 @@ const Navbar = () => {
             </Link>
           </>
         ) : (
-          <>
+          <><Link to="/login">
             <button
               className="bg-red-600 text-white font-semibold py-1 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
               onClick={logout} // Call logout directly
             >
               Logout
             </button>
+          </Link>
+            
             <Link to="/teacher">
               <button className="bg-transparent text-blue-500 font-semibold py-1 px-4 rounded border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
                 Profile

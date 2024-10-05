@@ -26,7 +26,7 @@ const SquishyCard = () => {
               role="Game"
               description="Simple and efficient plan for individuals."
               imageUrl={homeImage}
-              link="#" // Add a link if necessary
+              link="/game" // Add a link if necessary
             />
             {/* Third Card */}
             <Card
