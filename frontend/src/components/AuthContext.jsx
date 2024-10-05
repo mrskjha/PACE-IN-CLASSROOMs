@@ -1,18 +1,23 @@
-import React, { createContext, useContext, useState } from 'react';
+// AuthContext.js
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Create AuthContext
 const AuthContext = createContext();
 
-// Create AuthProvider component
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Adjust initial state as needed
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    // Check local storage for the authentication status
+    const storedAuthStatus = localStorage.getItem("isAuthenticated");
+    return storedAuthStatus === "true"; // Convert string to boolean
+  });
 
   const login = () => {
     setIsAuthenticated(true);
+    localStorage.setItem("isAuthenticated", "true"); // Store auth status in local storage
   };
 
   const logout = () => {
     setIsAuthenticated(false);
+    localStorage.removeItem("isAuthenticated"); // Remove auth status from local storage
   };
 
   return (
@@ -22,11 +27,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use AuthContext
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+export const useAuth = () => useContext(AuthContext);

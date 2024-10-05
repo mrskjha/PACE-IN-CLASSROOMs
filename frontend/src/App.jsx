@@ -82,6 +82,8 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
                 <>
                   <World globeConfig={globeConfig} data={globeData} />
                   <About /> {/* Render About component here for the Home page */}
+                  <Contact/>
+                  <Footer/>
                 </>
               } 
             />
