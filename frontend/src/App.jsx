@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 import VideoCources from "./components/VideoCources";
 import GoogleMap from "./components/GoogleMap";
 import Teacher from "./components/Teacher";
+import FetchNASAData from "./components/FetchNASAData";
 
 function App() {
   const globeConfig = {
@@ -91,6 +92,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/courses" element={<SquishyCard />} />
             <Route path="/maps" element={<GoogleMap />} />
             <Route path="/teacher" element={<Teacher />} />
+           
             <Route
               path="/learning/lightfundamentals"
               element={
@@ -101,6 +103,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             />
             <Route path="/learning/phytoplankton" element={<Phytoplankton />} />
             <Route path="/learning/ownpace" element={<OwnPace />} />
+            <Route path="/learning/fetchNASAData" element={<FetchNASAData />} />
             <Route path="/video-learning" element={<VideoLearning className="z-50" />} />
             <Route path="*" element={<Navigate to="/" />} />
           </>

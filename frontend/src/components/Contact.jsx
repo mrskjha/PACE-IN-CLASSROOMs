@@ -1,22 +1,21 @@
-
-
+import videofile from "../assets/contactUsVideo.mp4" 
 
 
 const Contact= () => {
   return (
     <>
-    <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-16 py-16 h-auto  bg-black">
+    <div className="flex flex-col lg:flex-row items-center justify-between px-8 lg:px-12 py-16 h-auto  bg-black">
       {/* Left Section: Heading and Form */}
-      <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
+      <div className="w-full lg:w-1/2 mb-12 mt-9  lg:mb-0 ">
         {/* Heading */}
-        <h1 className="text-6xl lg:text-8xl font-bold tracking-tight text-gray-50">
+        <h1 className="text-6xl lg:text-8xl font-bold tracking-tight text-gray-50 ml-16">
           LET'S  TALK!
         </h1>
         
         {/* Form */}
-        <form className="mt-8 space-y-4">
-          <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2 hover:text-lg" htmlFor="name">
+        <form className="mt-8 space-y-6 ">
+          <div classname="">
+            <label className="mr-[400px] text-gray-700 text-sm font-bold mb-2 hover:text-lg" htmlFor="name">
               Your name *
             </label>
             <input
@@ -29,8 +28,8 @@ const Contact= () => {
           </div>
           
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2 hover:text-lg" htmlFor="email">
-              Your email *
+            <label className="mr-[400px] text-gray-700 text-sm font-bold mb-2 hover:text-lg" htmlFor="email">
+              Your email 
             </label>
             <input
               type="email"
@@ -42,7 +41,7 @@ const Contact= () => {
           </div>
           
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2 hover:text-lg" htmlFor="message">
+            <label className="mr-[400px] text-gray-700 text-sm font-bold  hover:text-lg mb-2" htmlFor="message">
               Your message *
             </label>
             <textarea
@@ -71,7 +70,7 @@ const Contact= () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center mt-9 ml-9">
         <div className="w-3/4 h-96 border-4 border-gray-700 rounded-lg  flex items-center justify-center">
           {/* Placeholder for 3D Animation/Image */}
-        {/* <video src={videoFile} className='w-full h-full object-cover rounded-lg' autoPlay loop controls muted  ></video> */}
+        <video src={videofile} className='w-full h-full object-cover rounded-lg' autoPlay loop controls muted  ></video>
           <p className="text-white"></p>
         </div>
       </div>

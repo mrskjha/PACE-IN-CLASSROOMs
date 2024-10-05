@@ -44,9 +44,7 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         {!isAuthenticated ? (
           <>
-            <button className="text-indigo-600 font-semibold py-1 px-4 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
-              Sign Up
-            </button>
+            
             <Link to="/login">
               <button className="bg-transparent text-blue-500 font-semibold py-1 px-4 rounded border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out shadow-lg transform hover:scale-105">
                 Login

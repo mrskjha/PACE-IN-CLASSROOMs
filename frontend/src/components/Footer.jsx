@@ -3,7 +3,7 @@ import { faTwitter, faFacebook, faTelegram, faXTwitter } from '@fortawesome/free
 
 const Footer = () => {
   return (
-    <div className="w-full h-auto mt-0 bg-black text-white">
+    <div className="w-full h-auto mt-0 bg-black  text-white">
      
 
       <div className="flex justify-between items-center w-full px-[150px]">

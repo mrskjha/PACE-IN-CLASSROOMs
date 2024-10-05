@@ -150,6 +150,7 @@ const Schedule = () => {
       <ScheduleItem title="LightFundamentals" id="LightFundamentals"/>
       <ScheduleItem title="Phytoplankton"id="Phytoplankton" />
       <ScheduleItem title="OwnPace"id="OwnPace" />
+      <ScheduleItem title="fetchNASAData"id="Access PACE OCI Img" />
     </section>
   );
 };
@@ -168,7 +169,7 @@ const ScheduleItem = ({ title }) => {
       <div>
         <Link to={`/learning/${title.toLowerCase()}`}> {/* Adjust the route as needed */}
           <button className="flex items-center text-white bg-teal-500 hover:bg-teal-600 px-4 py-2 rounded-lg transition-all duration-300">
-            Click me
+            Start
           </button>
         </Link>
       </div>

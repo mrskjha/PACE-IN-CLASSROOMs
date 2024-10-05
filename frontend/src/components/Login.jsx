@@ -19,6 +19,8 @@ const Login = () => {
     username: "",
     email: "",
     password: "",
+    className: "",
+    category: "",
   });
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
@@ -60,14 +62,14 @@ const Login = () => {
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     console.log("Sign Up Data:", signUpData);
-
+  
     try {
       const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Ensure the content type is JSON
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(signUpData), // Convert the signup data to JSON
+        body: JSON.stringify(signUpData),
       });
       const data = await response.json();
       console.log("Sign Up API Response:", data);
@@ -174,6 +176,17 @@ const Login = () => {
                 name="password"
                 placeholder="Password"
                 value={signUpData.password}
+                onChange={handleSignUpChange}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input
+                type="text" // Change to text
+                name="className"
+                placeholder="Class "
+                value={signUpData.className}
                 onChange={handleSignUpChange}
                 required
               />
