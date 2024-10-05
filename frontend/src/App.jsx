@@ -18,6 +18,7 @@ import GoogleMap from "./components/GoogleMap";
 import Teacher from "./components/Teacher";
 import FetchNASAData from "./components/FetchNASAData";
 import Game from "./components/Game";
+import Fiels from "./components/Files";
 
 function App() {
   const globeConfig = {
@@ -92,13 +93,14 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/courses" element={<SquishyCard />} />
             <Route path="/maps" element={<GoogleMap />} />
-            <Route path="/teacher" element={<Teacher />} />
+            <Route path="/teacher" element={<><Teacher /><Fiels/></>} />
            
             <Route
               path="/learning/lightfundamentals"
               element={
                 <>
-                  <LightFundamentals /> <VideoCources />
+                  <LightFundamentals />
+                  <VideoCources />
                 </>
               }
             />

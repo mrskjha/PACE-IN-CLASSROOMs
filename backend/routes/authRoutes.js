@@ -1,21 +1,32 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken')
-const {jwtkey} = require('../keys')
+const express = require('express');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const multer = require('multer'); // Import multer
+const { jwtkey } = require('../keys');
 const router = express.Router();
 const User = mongoose.model('User');
 
+// Multer setup for file uploads with disk storage
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Specify the folder to save the uploaded files
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname); // Rename the file to include timestamp
+    },
+});
 
-router.post('/',(req,res)=>{
-    res.send("Hello")
-})
+const upload = multer({ storage: storage }); // Create multer instance with storage configuration
 
+router.post('/', (req, res) => {
+    res.send("Hello");
+});
 
 router.post('/signup', async (req, res) => {
-    const { username, email, password,className,catagory } = req.body;
+    const { username, email, password, className, catagory } = req.body;
 
     // Check if all fields are provided
-    if (!username || !email || !password || !className || !catagory ) {
+    if (!username || !email || !password || !className || !catagory) {
         return res.status(422).send({ error: "Please provide username, email, password, className, catagory" });
     }
 
@@ -26,7 +37,6 @@ router.post('/signup', async (req, res) => {
             return res.status(422).send({ error: "User with this email already exists." });
         }
 
-
         // Create a new user with the hashed password
         const user = new User({ username, email, password, catagory, className });
         await user.save();
@@ -35,34 +45,36 @@ router.post('/signup', async (req, res) => {
         const token = jwt.sign({ userId: user._id }, jwtkey);
         res.send({ message: "Signed up successfully!", token, success: true });
     } catch (err) {
+        console.error(err); // Log error for debugging
         return res.status(422).send({ error: "Signup failed, please try again." });
     }
 });
 
 router.post('/signin', async (req, res) => {
-  const { email, password } = req.body;
-  
-  if (!email || !password) {
-      return res.status(422).send({ error: "Must provide email and password" });
-  }
-  
-  const user = await User.findOne({ email });
-  
-  if (!user) {
-      return res.status(422).send({ error: "Invalid email or password" });
-  }
-  
-  try {
-      const isMatch = await user.comparePassword(password);
-      if (!isMatch) {
-          return res.status(422).send({ error: "Invalid email or password" });
-      }
-      
-      const token = jwt.sign({ userId: user._id }, jwtkey);
-      res.send({ message: "Login successful!",token,success: true });
-  } catch (err) {
-      return res.status(422).send({ error: "Login failed, please try again." });
-  }
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(422).send({ error: "Must provide email and password" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+        return res.status(422).send({ error: "Invalid email or password" });
+    }
+
+    try {
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            return res.status(422).send({ error: "Invalid email or password" });
+        }
+
+        const token = jwt.sign({ userId: user._id }, jwtkey);
+        res.send({ message: "Login successful!", token, success: true });
+    } catch (err) {
+        console.error(err); // Log error for debugging
+        return res.status(422).send({ error: "Login failed, please try again." });
+    }
 });
 
 router.get('/students', async (req, res) => {
@@ -76,9 +88,23 @@ router.get('/students', async (req, res) => {
 
         res.send(students);
     } catch (err) {
+        console.error(err); // Log error for debugging
         return res.status(500).send({ error: "Error fetching students" });
     }
 });
 
+// File upload route
+router.post('/uploadFile', upload.single('file'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).send({ error: 'No file uploaded' });
+        }
+        // Here you can process the file as needed
+        res.send({ message: 'File uploaded successfully!', file: req.file });
+    } catch (error) {
+        console.error(error); // Log error for debugging
+        res.status(500).send({ error: 'File upload failed, please try again.' });
+    }
+});
 
-module.exports = router
+module.exports = router;
