@@ -4,6 +4,12 @@ import ParticleRing from "./components/particeRing";
 import { World } from "./components/World";
 import About from "./components/About";
 import Contact from "./components/Contact";
+
+// import LightFundamentals from "./components/LightFundamentals";
+import Login from "./components/login";
+import Navbar from "./components/Navbar";
+import Teacher from "./components/Teacher"
+
 import Navbar from "./components/Navbar";
 import SquishyCard from "./components/Couses";
 import Phytoplankton from "./components/Phytoplankton";
@@ -16,9 +22,10 @@ import Footer from "./components/Footer";
 import VideoCources from "./components/VideoCources";
 import GoogleMap from "./components/GoogleMap";
 
+
 function App() {
   const globeConfig = {
-    globeColor: "#6439FF",
+    globeColor: "#282888",
     ambientLight: "#ffffff",
     directionalLeftLight: "#fff",
     directionalTopLight: "#aaa",
@@ -54,6 +61,7 @@ function App() {
   }, []);
 
   return (
+
     <AuthProvider>
       <Router>
         <div className="relative w-screen h-screen">
@@ -76,6 +84,7 @@ function App() {
     </AuthProvider>
   );
 }
+
 
 // New component to handle routes and authentication
 const AuthRoutes = ({ globeConfig, globeData }) => {
