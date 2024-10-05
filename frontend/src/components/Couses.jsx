@@ -2,16 +2,20 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for routin
 import satelliteImage from '../assets/Quiz1.png';
 import homeImage from '../assets/Data visualization2.png';
 import learningImage from '../assets/LearningMaterial.png';
+import ParticleRing from "./particeRing";
 
 const SquishyCard = () => {
   return (
-    <section className="mt-[150px] px-4 py-12">
+    <>
+    <ParticleRing  className="relative inset-0 z-0"/>
+    <div className=" absolute ml-[200px] top-[200%]  z-10  "  >
+    <section className="mt-[150px] px-4 py-12 ">
       <div className="mx-auto flex flex-wrap justify-center gap-8">
         {/* First Card */}
         <Card
           id="#1"
           role="Learning"
-          role1="Materials"
+          role1="Materials" 
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
           imageUrl={learningImage}
           link="/video-learning"
@@ -32,7 +36,10 @@ const SquishyCard = () => {
           link="https://pace.oceansciences.org/phyto_quiz.htm"
         />
       </div>
+      
     </section>
+   </div>
+    </>
   );
 };
 
@@ -72,6 +79,7 @@ const Card = ({ id, role, role1, description, imageUrl, link }) => {
         Explore now
       </button>
     </div>
+   
   );
 };
 

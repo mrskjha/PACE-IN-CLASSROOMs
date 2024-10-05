@@ -8,14 +8,14 @@ import Contact from "./components/Contact";
 // import LightFundamentals from "./components/LightFundamentals";
 import Login from "./components/login";
 import Navbar from "./components/Navbar";
-import Teacher from "./components/Teacher"
+import Teacher from "./components/Teacher";
 
-import Navbar from "./components/Navbar";
+
 import SquishyCard from "./components/Couses";
 import Phytoplankton from "./components/Phytoplankton";
 import OwnPace from "./components/OwnPace";
 import { VideoLearning } from "./components/VideoLearning";
-import Login from "./components/Login";
+
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import LightFundamentals from "./components/LightFundamentals";
 import Footer from "./components/Footer";
@@ -69,16 +69,20 @@ function App() {
           <Navbar className="z-10 text-black" />
           <>
             <AuthRoutes globeConfig={globeConfig} globeData={globeData} />
-            <ParticleRing />
             <div>
-              <About className="absolute top-[400%] w-full h-full z-10 " />
+              <About className=" bg-black top-[100%] w-full h-full z-10 " />
             </div>
-            <ParticleRing />
-            <SquishyCard className="absolute top-[200%] w-full h-full z-10  " />
-            <GoogleMap />
+            
+            <div>
+              <SquishyCard className=" bg-red-950 top-[200%] w-full h-full z-10 " />
+            </div>
+            
+           
+            
+           
             <Footer />
           </>
-          {/* <ParticleRing className="absolute inset-0  z-0" /> */}
+          
         </div>
       </Router>
     </AuthProvider>
