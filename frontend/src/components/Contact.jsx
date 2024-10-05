@@ -1,9 +1,6 @@
 
 
 
-        
-
-
 
 const Contact= () => {
   return (
