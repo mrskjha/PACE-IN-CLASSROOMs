@@ -22,9 +22,6 @@ mongoose.connect(mogoUrl,{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
-process.on('warning', (warning) => {
-    console.log(warning.stack);
-});
 
 mongoose.connection.on('connected',()=>{
     console.log("connected to mongo yeahh")
