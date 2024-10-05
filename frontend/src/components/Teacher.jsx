@@ -25,7 +25,7 @@ const Teacher = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black z-50 ">
+    <div className="h-screen mt-24 bg-black z-50 ">
       {/* Navbar */}
       <div className="flex justify-between px-6 py-4">
         <h1 className="text-white font-bold text-xl">Student Profiles</h1>
@@ -59,9 +59,7 @@ const Teacher = () => {
 
       {/* Add New Student Button */}
       <div className="px-6 py-8 flex justify-center">
-        <button className="bg-white hover:bg-gray-700 hover:text-white text-black rounded-md px-6 py-3">
-          + Add New Student
-        </button>
+        
       </div>
     </div>
   );
