@@ -20,6 +20,7 @@ import FetchNASAData from "./components/FetchNASAData";
 import Game from "./components/Game";
 import Fiels from "./components/Files";
 import TeacherUploads from "./components/teacherUploads";
+import Game1 from "./components/Game1";
 
 function App() {
   const globeConfig = {
@@ -122,6 +123,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/learning/teacherUploads" element={<TeacherUploads />} />
             <Route path="/video-learning" element={<VideoLearning className="z-50" />} />
             <Route path="/game" element={<Game />} />
+            <Route path="/game1" element={<Game1 />} />
             <Route path="*" element={<Navigate to="/" />} />
           </>
         ) : (
