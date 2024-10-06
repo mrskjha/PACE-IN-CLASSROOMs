@@ -1,23 +1,27 @@
-// AuthContext.js
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
+// Create AuthContext
 const AuthContext = createContext();
 
+// Create AuthProvider component
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    // Check local storage for the authentication status
-    const storedAuthStatus = localStorage.getItem("isAuthenticated");
-    return storedAuthStatus === "true"; // Convert string to boolean
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const storedAuth = localStorage.getItem('isAuthenticated');
+    if (storedAuth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const login = () => {
     setIsAuthenticated(true);
-    localStorage.setItem("isAuthenticated", "true"); // Store auth status in local storage
+    localStorage.setItem('isAuthenticated', 'true');
   };
 
   const logout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated"); // Remove auth status from local storage
+    localStorage.removeItem('isAuthenticated');
   };
 
   return (
@@ -27,4 +31,11 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+// Custom hook to use AuthContext
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

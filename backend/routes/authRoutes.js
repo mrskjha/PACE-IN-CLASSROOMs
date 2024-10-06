@@ -23,75 +23,85 @@ router.post('/', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    const { username, email, password, className, catagory } = req.body;
+    const { username, email, password, className, category } = req.body;
 
     // Check if all fields are provided
-    if (!username || !email || !password || !className || !catagory) {
-        return res.status(422).send({ error: "Please provide username, email, password, className, catagory" });
+    if (!username || !email || !password || !className || !category) {
+        return res.status(422).json({ error: "Please provide all the required fields" });
     }
 
     try {
         // Check if user with this email already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(422).send({ error: "User with this email already exists." });
+            return res.status(422).json({ error: "User with this email already exists." });
         }
 
-        // Create a new user with the hashed password
-        const user = new User({ username, email, password, catagory, className });
+        
+
+        // Create a new user
+        const user = new User({
+            username,
+            email,
+            password, // Save hashed password
+            className,
+            category
+        });
         await user.save();
 
         // Create JWT token
-        const token = jwt.sign({ userId: user._id }, jwtkey);
-        res.send({ message: "Signed up successfully!", token, success: true });
+        const token = jwt.sign({ userId: user._id }, jwtkey, { expiresIn: '1h' });
+        res.status(201).json({ message: "Signed up successfully!", token, success: true });
     } catch (err) {
         console.error(err); // Log error for debugging
-        return res.status(422).send({ error: "Signup failed, please try again." });
+        res.status(500).json({ error: "Signup failed, please try again." });
     }
 });
 
+
+// Example login route
 router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-        return res.status(422).send({ error: "Must provide email and password" });
-    }
-
+    // Find the user and verify the password (implement your logic)
     const user = await User.findOne({ email });
-
-    if (!user) {
-        return res.status(422).send({ error: "Invalid email or password" });
+    if (!user || !await user.comparePassword(password)) {
+        return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
 
-    try {
-        const isMatch = await user.comparePassword(password);
-        if (!isMatch) {
-            return res.status(422).send({ error: "Invalid email or password" });
-        }
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, jwtkey, { expiresIn: '1h' });
 
-        const token = jwt.sign({ userId: user._id }, jwtkey);
-        res.send({ message: "Login successful!", token, success: true });
-    } catch (err) {
-        console.error(err); // Log error for debugging
-        return res.status(422).send({ error: "Login failed, please try again." });
-    }
+    // Set the token as a cookie
+    res.cookie('token', token, {
+        httpOnly: true, // Prevents client-side access
+        secure: process.env.NODE_ENV === 'production', // Set to true in production
+        maxAge: 3600000, // 1 hour
+    });
+
+    res.status(200).json({ success: true });
 });
 
 router.get('/students', async (req, res) => {
     try {
-        // Assuming "catagory" is used to determine students
-        const students = await User.find({ catagory: 'student' });
+        // Ensure correct spelling for "category"
+        const category = req.query.category || 'student'; // Use query param for category filtering
 
+        // Fetch students based on the category
+        const students = await User.find({ category }); // Correct spelling to 'category'
+
+        // Check if students were found
         if (!students || students.length === 0) {
             return res.status(404).send({ message: "No students found" });
         }
 
-        res.send(students);
+        res.status(200).send(students); // Send the list of students with a 200 status
     } catch (err) {
-        console.error(err); // Log error for debugging
+        console.error("Error fetching students:", err); // Log error for debugging
         return res.status(500).send({ error: "Error fetching students" });
     }
 });
+
 
 // File upload route
 router.post('/uploadFile', upload.single('file'), (req, res) => {

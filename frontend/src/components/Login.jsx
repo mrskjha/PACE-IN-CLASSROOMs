@@ -48,25 +48,25 @@ const Login = () => {
       const data = await response.json();
       if (data.success) {
         alert("Logged in successfully!");
-        login();
-        navigate("/");
+        login(); // Call login method from context
+        navigate("/"); // Redirect to homepage
       } else {
-        alert("Invalid email or password!");
+        alert(data.error || "Invalid email or password!");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed!");
+      alert("Login failed! Please try again.");
     }
   };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    // Validation checks before submitting
-    if (!signUpData.username || !signUpData.email || !signUpData.password) {
+    
+    if (!signUpData.username || !signUpData.email || !signUpData.password || !signUpData.className || !signUpData.category) {
       alert("Please fill out all the required fields.");
       return;
     }
-
+  
     try {
       const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
@@ -76,17 +76,20 @@ const Login = () => {
         body: JSON.stringify(signUpData),
       });
       const data = await response.json();
+      
       if (data.success) {
-        alert("Signed up successfully!");
-        setIsSignUp(false); // Switch to sign in after successful sign-up
+        alert("Signed up successfully! You can now log in.");
+        setIsSignUp(false);
+        setSignUpData({ username: "", email: "", password: "", className: "", category: "" }); // Clear sign-up form
       } else {
-        alert(data.error || "Sign up failed!");
+        alert(data.error || "Sign up failed! Please try again.");
       }
     } catch (error) {
       console.error("Sign Up error:", error);
-      alert("Sign Up failed!");
+      alert("Sign Up failed! Please try again.");
     }
   };
+  
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -197,20 +200,17 @@ const Login = () => {
               />
             </div>
             <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <select
+              <i className="fas fa-user"></i>
+              <input
+              type="text"
                 name="category"
                 value={signUpData.category}
                 onChange={handleSignUpChange}
+                placeholder="Category (e.g. teacher/student)"
                 required
               >
-                <option value="" disabled>
-                  Select Category
-                </option>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-              </select>
+
+              </input>
             </div>
 
             <input type="submit" className="btn" value="Sign up" />

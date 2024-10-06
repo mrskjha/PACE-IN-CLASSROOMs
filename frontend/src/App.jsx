@@ -72,7 +72,7 @@ function App() {
 
 // New component to handle routes and authentication
 const AuthRoutes = ({ globeConfig, globeData }) => {
-  const { isAuthenticated } = useAuth(); 
+  const { isAuthenticated, user } = useAuth(); 
 
   return (
     <div className="absolute top-0 left-0 w-full h-full z-10">
@@ -85,16 +85,22 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
                 <>
                   <World globeConfig={globeConfig} data={globeData} />
                   <About /> {/* Render About component here for the Home page */}
-                  <Contact/>
-                  <Footer/>
+                  <Contact />
+                  <Footer />
                 </>
               } 
             />
             <Route path="/contact" element={<Contact />} />
             <Route path="/courses" element={<SquishyCard />} />
             <Route path="/maps" element={<GoogleMap />} />
-            <Route path="/teacher" element={<><Teacher /><Fiels/></>} />
-           
+            
+            {/* Check if user is defined and has a role */}
+            { user && user.category === "teacher" ? ( // Updated to handle undefined user
+              <Route path="/teacher" element={<Navigate to="/" />} /> // Redirecting to Home if not a teacher
+            ) : (
+              <Route path="/teacher" element={<><Teacher /><Fiels/></>} />
+            )}
+
             <Route
               path="/learning/lightfundamentals"
               element={
@@ -120,6 +126,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
       </Routes>
     </div>
   );
-}
+};
+
 
 export default App;
