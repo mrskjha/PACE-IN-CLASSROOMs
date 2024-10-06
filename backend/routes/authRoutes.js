@@ -51,7 +51,7 @@ router.post('/signup', async (req, res) => {
 
         // Create JWT token
         const token = jwt.sign({ userId: user._id }, jwtkey, { expiresIn: '1h' });
-        res.status(201).json({ message: "Signed up successfully!", token, success: true });
+        res.status(201).json({ message: "Signed up successfully!", token, success: true ,user});
     } catch (err) {
         console.error(err); // Log error for debugging
         res.status(500).json({ error: "Signup failed, please try again." });
@@ -79,7 +79,7 @@ router.post('/signin', async (req, res) => {
         maxAge: 3600000, // 1 hour
     });
 
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true ,user});
 });
 
 router.get('/students', async (req, res) => {

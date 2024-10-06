@@ -19,6 +19,7 @@ import Teacher from "./components/Teacher";
 import FetchNASAData from "./components/FetchNASAData";
 import Game from "./components/Game";
 import Fiels from "./components/Files";
+import TeacherUploads from "./components/teacherUploads";
 
 function App() {
   const globeConfig = {
@@ -70,6 +71,12 @@ function App() {
   );
 }
 
+// Helper function to check if user is a teacher
+const isTeacher = (user) => {
+  console.log("User:", user); // Log user to check if it has a teacher role
+  return user && user.category === "teacher";
+};
+
 // New component to handle routes and authentication
 const AuthRoutes = ({ globeConfig, globeData }) => {
   const { isAuthenticated, user } = useAuth(); 
@@ -86,7 +93,6 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
                   <World globeConfig={globeConfig} data={globeData} />
                   <About /> {/* Render About component here for the Home page */}
                   <Contact />
-                  <Footer />
                 </>
               } 
             />
@@ -94,11 +100,11 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/courses" element={<SquishyCard />} />
             <Route path="/maps" element={<GoogleMap />} />
             
-            {/* Check if user is defined and has a role */}
-            { user && user.category === "teacher" ? ( // Updated to handle undefined user
-              <Route path="/teacher" element={<Navigate to="/" />} /> // Redirecting to Home if not a teacher
+            {/* Check if user is defined and has a teacher role */}
+            {isTeacher(user) ? (
+              <Route path="/teacher" element={<Navigate to="/" />} />
             ) : (
-              <Route path="/teacher" element={<><Teacher /><Fiels/></>} />
+              <Route path="/teacher" element={<><Teacher /><Fiels /></>} />
             )}
 
             <Route
@@ -113,6 +119,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/learning/phytoplankton" element={<Phytoplankton />} />
             <Route path="/learning/ownpace" element={<OwnPace />} />
             <Route path="/learning/fetchNASAData" element={<FetchNASAData />} />
+            <Route path="/learning/teacherUploads" element={<TeacherUploads />} />
             <Route path="/video-learning" element={<VideoLearning className="z-50" />} />
             <Route path="/game" element={<Game />} />
             <Route path="*" element={<Navigate to="/" />} />
@@ -127,6 +134,5 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
     </div>
   );
 };
-
 
 export default App;

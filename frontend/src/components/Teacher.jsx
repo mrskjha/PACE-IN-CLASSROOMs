@@ -25,7 +25,7 @@ const Teacher = () => {
   }, []);
 
   return (
-    <div className="h-screen mt-24 bg-black z-50 ">
+    <div className="h-screen mt-96 bg-black z-50 ">
       {/* Navbar */}
       <div className="flex justify-between px-6 py-4">
         <h1 className="text-white font-bold text-xl">Student Profiles</h1>
