@@ -18,7 +18,7 @@ import GoogleMap from "./components/GoogleMap";
 import Teacher from "./components/Teacher";
 import FetchNASAData from "./components/FetchNASAData";
 import Game from "./components/Game";
-import Fiels from "./components/Files";
+import Files from "./components/Files";
 import TeacherUploads from "./components/teacherUploads";
 
 function App() {
@@ -94,8 +94,8 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/courses" element={<SquishyCard />} />
             <Route path="/maps" element={<GoogleMap />} />
-            <Route path="/teacher" element={<><Teacher /><Fiels/></>} />
-           
+            <Route path="/teacher" element={<><Files/><Teacher /></>} /> {/* Files component first */}
+
             <Route
               path="/learning/lightfundamentals"
               element={

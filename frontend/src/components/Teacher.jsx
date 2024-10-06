@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const Teacher = () => {
-  const [students, setStudents] = useState([]);  // Initialize students as an empty array
-  const [loading, setLoading] = useState(true);  // Add loading state
-  const [error, setError] = useState(null);      // Add error state
+  const [students, setStudents] = useState([]); // Initialize students as an empty array
+  const [loading, setLoading] = useState(true); // Add loading state
+  const [error, setError] = useState(null);     // Add error state
 
   // Fetch student data from the API
   useEffect(() => {
-    fetch('http://localhost:5000/students')  // Replace with your actual API
+    fetch('http://localhost:5000/students') // Replace with your actual API
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -15,8 +15,8 @@ const Teacher = () => {
         return response.json();
       })
       .then((data) => {
-        setStudents(data || []);  // Set the students array (adjusted for your data format)
-        setLoading(false);  // Set loading to false
+        setStudents(data || []); // Set the students array
+        setLoading(false); // Set loading to false
       })
       .catch((error) => {
         setError(error.message);
@@ -34,9 +34,9 @@ const Teacher = () => {
       {/* Student Profiles */}
       <div className="px-6 py-4">
         {loading ? (
-          <p className="text-white">Loading...</p>  // Show loading message
+          <p className="text-white">Loading...</p> // Show loading message
         ) : error ? (
-          <p className="text-red-500">Error: {error}</p>  // Show error message
+          <p className="text-red-500">Error: {error}</p> // Show error message
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {students.length > 0 ? (
@@ -59,7 +59,7 @@ const Teacher = () => {
 
       {/* Add New Student Button */}
       <div className="px-6 py-8 flex justify-center">
-        
+        {/* Optional Add New Student Button Here */}
       </div>
     </div>
   );

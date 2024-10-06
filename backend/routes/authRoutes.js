@@ -18,10 +18,27 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }); // Create multer instance with storage configuration
 
+// Middleware to authenticate users
+const authenticate = (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1]; // Extract token from authorization header
+    if (!token) {
+        return res.status(403).send({ error: 'No token provided, access forbidden.' });
+    }
+    jwt.verify(token, jwtkey, (err, decoded) => {
+        if (err) {
+            return res.status(403).send({ error: 'Failed to authenticate token.' });
+        }
+        req.userId = decoded.userId; // Save the user ID for further use
+        next();
+    });
+};
+
+// Sample route to test API
 router.post('/', (req, res) => {
     res.send("Hello");
 });
 
+// User signup route
 router.post('/signup', async (req, res) => {
     const { username, email, password, className, catagory } = req.body;
 
@@ -50,6 +67,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+// User signin route
 router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
@@ -77,9 +95,23 @@ router.post('/signin', async (req, res) => {
     }
 });
 
+// File upload route (protected by authentication)
+router.post('/uploadFile', authenticate, upload.single('file'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).send({ error: 'No file uploaded' });
+        }
+        // Here you can process the file as needed, e.g., saving metadata in the database
+        res.send({ message: 'File uploaded successfully!', file: req.file });
+    } catch (error) {
+        console.error(error); // Log error for debugging
+        res.status(500).send({ error: 'File upload failed, please try again.' });
+    }
+});
+
+// Route to get students based on category
 router.get('/students', async (req, res) => {
     try {
-        // Assuming "catagory" is used to determine students
         const students = await User.find({ catagory: 'student' });
 
         if (!students || students.length === 0) {
@@ -90,20 +122,6 @@ router.get('/students', async (req, res) => {
     } catch (err) {
         console.error(err); // Log error for debugging
         return res.status(500).send({ error: "Error fetching students" });
-    }
-});
-
-// File upload route
-router.post('/uploadFile', upload.single('file'), (req, res) => {
-    try {
-        if (!req.file) {
-            return res.status(400).send({ error: 'No file uploaded' });
-        }
-        // Here you can process the file as needed
-        res.send({ message: 'File uploaded successfully!', file: req.file });
-    } catch (error) {
-        console.error(error); // Log error for debugging
-        res.status(500).send({ error: 'File upload failed, please try again.' });
     }
 });
 
