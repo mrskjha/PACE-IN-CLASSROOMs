@@ -151,6 +151,7 @@ const Schedule = () => {
       <ScheduleItem title="Phytoplankton" path="Phytoplankton" />
       <ScheduleItem title="Own Pace" path="OwnPace" />
       <ScheduleItem title="Access PACE Data" path="fetchNASAData" />
+      <ScheduleItem title="Teacher Uploads" path="teacherUploads" />
     </section>
   );
 };

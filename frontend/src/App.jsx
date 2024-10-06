@@ -19,6 +19,7 @@ import Teacher from "./components/Teacher";
 import FetchNASAData from "./components/FetchNASAData";
 import Game from "./components/Game";
 import Fiels from "./components/Files";
+import TeacherUploads from "./components/teacherUploads";
 
 function App() {
   const globeConfig = {
@@ -107,6 +108,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/learning/phytoplankton" element={<Phytoplankton />} />
             <Route path="/learning/ownpace" element={<OwnPace />} />
             <Route path="/learning/fetchNASAData" element={<FetchNASAData />} />
+            <Route path="/learning/TeacherUploads" element={<TeacherUploads />} />
             <Route path="/video-learning" element={<VideoLearning className="z-50" />} />
             <Route path="/game" element={<Game />} />
             <Route path="*" element={<Navigate to="/" />} />
