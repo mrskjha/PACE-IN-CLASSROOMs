@@ -15,6 +15,10 @@ function LightFundamentals() {
     false,
     false,
     false,
+    false,
+    false,
+    false,
+    false,
   ]);
 
   // Toggle Function

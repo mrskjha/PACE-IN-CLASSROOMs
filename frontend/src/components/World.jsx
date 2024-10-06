@@ -6,6 +6,7 @@ import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "./globe.json"; // Example countries data
+import { Link } from "react-router-dom";
 
 extend({ ThreeGlobe });
 
@@ -180,15 +181,17 @@ export function World({ globeConfig }) {
     <div className="w-screen h-screen flex bg-none"> {/* Full screen */}
       {/* Heading and Paragraph on the Left Side */}
       <div className="flex flex-col justify-center mr-5 text-white px-[100px] w-[900px] ">
-        <h1 className="text-violet-950 text-4xl font-bold mb-1">PACE</h1>
+        <h1 className=" text-green-500 text-4xl font-bold mb-1">PACE</h1>
         <h1 className="text-2xl font-bold mb-2 text-white ">Start Exploring PACE Data Today!</h1>
         <p className="text-md mb-2">
           We are glad you are here, pace is a new earth observing satellite.
         </p>
         <div>
+          <Link to="/courses">
           <button className='uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-1'>
             Explore
           </button>
+          </Link>
         </div>
       </div>
 

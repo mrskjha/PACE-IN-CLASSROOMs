@@ -1,12 +1,13 @@
+import ParticleRing from "./particeRing"
 
 
 const About = () => {
     return (
+      <>
+      <ParticleRing  className=""/>
       <div>
-          <div className="w-full h-screen">
+          <div className=" absolute top-[100%] w-full h-screen ">
       
-  
-
    
       <div className=" text-white min-h-screen flex flex-col items-center justify-center">
         <div className="relative max-w-5xl mx-auto p-8">
@@ -33,15 +34,11 @@ const About = () => {
             <div className="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">About Pace Satellite</h2>
               <p className="mb-4">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-                1500s, when an unknown printer took a galley of type and scrambled it to
-                make a type specimen book.
+                PACE is a satellite mission that will make global ocean color measurements to provide extended data records on ocean biology, biogeochemistry, and ecology. .
+
               </p>
               <p className="mb-4">
-                It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                with the release of Letraset sheets containing Lorem Ipsum passages.
+                PACE will carry a state-of-the-art ocean color instrument, the Ocean Color Instrument (OCI), and two polarimeters, the Polarization and Directionality of Earth's Reflectances (PADER) and the Compact Ocean Polarimeter (COP). .
               </p>
               
             </div>
@@ -52,6 +49,7 @@ const About = () => {
   
           </div>
       </div>
+      </>
     )
   }
   

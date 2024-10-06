@@ -1,0 +1,41 @@
+{
+    "students": [
+      {
+        "id": 1,
+        "name": "Priya Doe",
+        "class": "10A",
+        "attendance": 95
+      },
+      {
+        "id": 2,
+        "name": "Emma Smith",
+        "class": "9B",
+        "attendance": 98
+      },
+      {
+        "id": 3,
+        "name": "Alex Brown",
+        "class": "11C",
+        "attendance": 90
+      },
+      {
+        "id": 4,
+        "name": "Sophia Wilson",
+        "class": "12A",
+        "attendance": 92
+      },
+      {
+        "id": 5,
+        "name": "Liam Johnson",
+        "class": "10B",
+        "attendance": 89
+      },
+      {
+        "id": 6,
+        "name": "Olivia Davis",
+        "class": "11A",
+        "attendance": 96
+      }
+    ]
+  }
+  

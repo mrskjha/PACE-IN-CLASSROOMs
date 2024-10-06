@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faFacebook, faTelegram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className="w-full h-auto mt-0 bg-black text-white">
+    <div className="w-full h-auto mt-0 bg-black  text-white">
      
 
       <div className="flex justify-between items-center w-full px-[150px]">
@@ -37,7 +38,12 @@ const Footer = () => {
       </div>
 
       
-      <div className=" text-center text-white">
+      <div className=" text-center text-white flex justify-center items-start">
+        <p className="text-sm py-4 ">© 2021 PACE. All rights reserved.
+          <Link to="/maps">
+            Maps
+          </Link>
+        </p>
 
       </div>
     </div>

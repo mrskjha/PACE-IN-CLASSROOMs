@@ -19,6 +19,8 @@ const Login = () => {
     username: "",
     email: "",
     password: "",
+    className: "",
+    category: "",
   });
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
@@ -46,42 +48,48 @@ const Login = () => {
       const data = await response.json();
       if (data.success) {
         alert("Logged in successfully!");
-        login();
-        navigate("/");
+        login(); // Call login method from context
+        navigate("/"); // Redirect to homepage
       } else {
-        alert("Invalid email or password!");
+        alert(data.error || "Invalid email or password!");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Login failed!");
+      alert("Login failed! Please try again.");
     }
   };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sign Up Data:", signUpData);
-
+    
+    if (!signUpData.username || !signUpData.email || !signUpData.password || !signUpData.className || !signUpData.category) {
+      alert("Please fill out all the required fields.");
+      return;
+    }
+  
     try {
       const response = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Ensure the content type is JSON
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(signUpData), // Convert the signup data to JSON
+        body: JSON.stringify(signUpData),
       });
       const data = await response.json();
-      console.log("Sign Up API Response:", data);
+      
       if (data.success) {
-        alert("Signed up successfully!");
-        setIsSignUp(false); // Switch to sign in after successful sign up
+        alert("Signed up successfully! You can now log in.");
+        setIsSignUp(false);
+        setSignUpData({ username: "", email: "", password: "", className: "", category: "" }); // Clear sign-up form
       } else {
-        alert(data.error || "Sign up failed!");
+        alert(data.error || "Sign up failed! Please try again.");
       }
     } catch (error) {
       console.error("Sign Up error:", error);
-      alert("Sign Up failed!");
+      alert("Sign Up failed! Please try again.");
     }
   };
+  
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -95,6 +103,7 @@ const Login = () => {
     <div className={`container ${isSignUp ? "sign-up-mode" : ""}`}>
       <div className="forms-container">
         <div className="signin-signup">
+          {/* Sign In Form */}
           <form
             onSubmit={handleSignInSubmit}
             className={`sign-in-form ${isSignUp ? "hidden" : ""}`}
@@ -140,6 +149,7 @@ const Login = () => {
             </div>
           </form>
 
+          {/* Sign Up Form */}
           <form
             onSubmit={handleSignUpSubmit}
             className={`sign-up-form ${isSignUp ? "" : "hidden"}`}
@@ -180,19 +190,27 @@ const Login = () => {
             </div>
             <div className="input-field">
               <i className="fas fa-lock"></i>
-              <select
+              <input
+                type="text"
+                name="className"
+                placeholder="Class (e.g. 9th)"
+                value={signUpData.className}
+                onChange={handleSignUpChange}
+                required
+              />
+            </div>
+            <div className="input-field">
+              <i className="fas fa-user"></i>
+              <input
+              type="text"
                 name="category"
                 value={signUpData.category}
                 onChange={handleSignUpChange}
+                placeholder="Category (e.g. teacher/student)"
                 required
               >
-                <option value="" disabled>
-                  Select Category
-                </option>
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-              </select>
+
+              </input>
             </div>
 
             <input type="submit" className="btn" value="Sign up" />
