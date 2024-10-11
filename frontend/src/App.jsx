@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
 import { useEffect, useState } from "react";
-import ParticleRing from "./components/particeRing";
+import ParticleRing from "./components/ParticeRing.jsx";
 import { World } from "./components/World";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Login from "./components/login";
+import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import SquishyCard from "./components/Couses";
 import Phytoplankton from "./components/Phytoplankton";
