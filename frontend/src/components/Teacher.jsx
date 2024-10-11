@@ -7,7 +7,7 @@ const Teacher = () => {
 
   // Fetch student data from the API
   useEffect(() => {
-    fetch('http://localhost:5000/students')  // Replace with your actual API
+    fetch('https://pace-in-classrooms.onrender.com/students')  // Replace with your actual API
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -8,7 +8,16 @@ const { mogoUrl } = require("./keys");
 
 const app = express();
 app.use(cookieParser());
-app.use(cors());
+
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:5173', // Your frontend URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials (like cookies) to be sent
+  optionsSuccessStatus: 200 // For legacy browser support
+};
+
+app.use(cors(corsOptions)); // Enable CORS with options
 app.use(bodyParser.json());
 
 // Connect to MongoDB
