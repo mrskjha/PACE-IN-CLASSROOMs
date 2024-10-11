@@ -8,6 +8,8 @@ import { OrbitControls } from "@react-three/drei";
 import countries from "./globe.json"; // Example countries data
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+// import { genRandomNumbers } from './path/to/your/utils'; // Adjust the path accordingly
+
 
 extend({ ThreeGlobe });
 
@@ -78,7 +80,9 @@ export function GlobeVisualization({ globeConfig, arcData }) {
 
     const uniquePoints = points.filter(
       (v, i, a) =>
-        a.findIndex((v2) => ["lat", "lng"].every((key) => v2[key] === v[key])) === i
+        a.findIndex((v2) =>
+          ["lat", "lng"].every((key) => v2[key] === v[key])
+        ) === i
     );
 
     setGlobePointsData(uniquePoints);
@@ -128,16 +132,32 @@ export function GlobeVisualization({ globeConfig, arcData }) {
       .ringMaxRadius(defaultConfig.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
       .ringRepeatPeriod(
-        (defaultConfig.arcAnimationTime * defaultConfig.arcLength) / defaultConfig.rings
+        (defaultConfig.arcAnimationTime * defaultConfig.arcLength) /
+          defaultConfig.rings
       );
   };
 
+  // Function to generate random numbers
+  function genRandomNumbers(min, max, count) {
+    const numbers = new Set();
+    while (numbers.size < count) {
+      const num = Math.floor(Math.random() * (max - min)) + min;
+      numbers.add(num);
+    }
+    return Array.from(numbers);
+  }
+
+  // Your useEffect
   useEffect(() => {
     if (!globeInstanceRef.current || !globePointsData) return;
 
     const interval = setInterval(() => {
       if (!globeInstanceRef.current || !globePointsData) return;
-      const activeRings = genRandomNumbers(0, arcData.length, Math.floor((arcData.length * 4) / 5));
+      const activeRings = genRandomNumbers(
+        0,
+        arcData.length,
+        Math.floor((arcData.length * 4) / 5)
+      );
 
       globeInstanceRef.current.ringsData(
         globePointsData.filter((d, i) => activeRings.includes(i))
@@ -150,8 +170,8 @@ export function GlobeVisualization({ globeConfig, arcData }) {
   }, [globeInstanceRef.current, globePointsData]);
 
   return (
-    <threeGlobe 
-      ref={globeInstanceRef} 
+    <threeGlobe
+      ref={globeInstanceRef}
       globeScale={defaultConfig.globeScale} // Apply the globe scale
     />
   );
@@ -179,52 +199,53 @@ export function World({ globeConfig }) {
   scene.fog = new Fog(0xffffff, 400, 2000);
 
   return (
-    <div className="w-screen h-screen flex bg-none"> {/* Full screen */}
+    <div className="w-screen h-screen flex bg-none">
+      {" "}
+      {/* Full screen */}
       {/* Heading and Paragraph on the Left Side */}
       <div className="flex flex-col justify-center mr-5 text-white px-20 w-[900px]">
-      <motion.h1
-        className="text-green-500 text-5xl font-bold mb-2"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        PACE
-      </motion.h1>
-      <motion.h1
-        className="text-3xl font-bold mb-3 text-white"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        Start Exploring PACE Data Today!
-      </motion.h1>
-      <motion.p
-        className="text-md mb-4"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        We are glad you are here. PACE is a new Earth observing satellite.
-      </motion.p>
-      <div>
-        <Link to="/courses">
-          <motion.button
-            className="uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-2"
-            initial={{ scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            Explore
-          </motion.button>
-        </Link>
+        <motion.h1
+          className="text-green-500 text-5xl font-bold mb-2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          PACE
+        </motion.h1>
+        <motion.h1
+          className="text-3xl font-bold mb-3 text-white"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Start Exploring PACE Data Today!
+        </motion.h1>
+        <motion.p
+          className="text-md mb-4"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          We are glad you are here. PACE is a new Earth observing satellite.
+        </motion.p>
+        <div>
+          <Link to="/courses">
+            <motion.button
+              className="uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-2"
+              initial={{ scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Explore
+            </motion.button>
+          </Link>
+        </div>
       </div>
-    </div>
-
-      <Canvas 
-        scene={scene} 
+      <Canvas
+        scene={scene}
         camera={new PerspectiveCamera(50, aspectRatio, 100, 2000)} // Adjusted camera field of view and position
-        className="w-full h-full" 
+        className="w-full h-full"
       >
         <WebGLRendererConfig />
         <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
@@ -241,7 +262,10 @@ export function World({ globeConfig }) {
           position={new Vector3(-200, 500, 200)}
           intensity={0.8}
         />
-        <GlobeVisualization globeConfig={defaultGlobeConfig} arcData={globeConfig.arcData} />
+        <GlobeVisualization
+          globeConfig={defaultGlobeConfig}
+          arcData={globeConfig.arcData}
+        />
         <OrbitControls
           enablePan={false}
           enableZoom={false}
