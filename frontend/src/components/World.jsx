@@ -7,6 +7,7 @@ import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "./globe.json"; // Example countries data
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 extend({ ThreeGlobe });
 
@@ -180,20 +181,45 @@ export function World({ globeConfig }) {
   return (
     <div className="w-screen h-screen flex bg-none"> {/* Full screen */}
       {/* Heading and Paragraph on the Left Side */}
-      <div className="flex flex-col justify-center mr-5 text-white px-[100px] w-[900px] ">
-        <h1 className=" text-green-500 text-4xl font-bold mb-1">PACE</h1>
-        <h1 className="text-2xl font-bold mb-2 text-white ">Start Exploring PACE Data Today!</h1>
-        <p className="text-md mb-2">
-          We are glad you are here, pace is a new earth observing satellite.
-        </p>
-        <div>
-          <Link to="/courses">
-          <button className='uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-1'>
+      <div className="flex flex-col justify-center mr-5 text-white px-20 w-[900px]">
+      <motion.h1
+        className="text-green-500 text-5xl font-bold mb-2"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        PACE
+      </motion.h1>
+      <motion.h1
+        className="text-3xl font-bold mb-3 text-white"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        Start Exploring PACE Data Today!
+      </motion.h1>
+      <motion.p
+        className="text-md mb-4"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        We are glad you are here. PACE is a new Earth observing satellite.
+      </motion.p>
+      <div>
+        <Link to="/courses">
+          <motion.button
+            className="uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-2"
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             Explore
-          </button>
-          </Link>
-        </div>
+          </motion.button>
+        </Link>
       </div>
+    </div>
 
       <Canvas 
         scene={scene} 
