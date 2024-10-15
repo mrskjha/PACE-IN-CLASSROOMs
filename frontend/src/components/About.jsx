@@ -1,10 +1,10 @@
-import ParticleRing from "./particeRing"
+// import ParticleRing from "./ParticeRing"
 
 
 const About = () => {
     return (
       <>
-      <ParticleRing  className=""/>
+      {/* <ParticleRing  className=""/> */}
       <div>
           <div className=" absolute top-[100%] w-full h-screen ">
       

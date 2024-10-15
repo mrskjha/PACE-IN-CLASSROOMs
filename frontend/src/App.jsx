@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
 import { useEffect, useState } from "react";
-import ParticleRing from "./components/ParticeRing.jsx";
+// import ParticleRing from "./components/ParticeRing.jsx";
 import { World } from "./components/World";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -62,7 +62,7 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="relative w-screen h-screen">
-          <ParticleRing className="absolute inset-0 z-0" />
+          {/* <ParticleRing className="absolute inset-0 z-0" /> */}
           <Navbar className="z-10 text-black" />
           <AuthRoutes globeConfig={globeConfig} globeData={globeData} />
           <Footer />

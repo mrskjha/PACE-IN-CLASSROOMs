@@ -2,12 +2,12 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for routin
 import satelliteImage from '../assets/Quiz1.png';
 import homeImage from '../assets/Data visualization2.png';
 import learningImage from '../assets/LearningMaterial.png';
-import ParticleRing from "./particeRing";
+// import ParticleRing from "./particeRing";
 
 const SquishyCard = () => {
   return (
     <>
-      <ParticleRing className="relative inset-0 z-0" />
+      {/* <ParticleRing className="relative inset-0 z-0" /> */}
       <div className="absolute ml-[200px] top-0 z-10">
         <section className="mt-[150px] px-4 py-12">
           <div className="mx-auto flex flex-wrap justify-center gap-8">
