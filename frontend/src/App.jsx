@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
-import { useEffect, useState } from "react";
+import { useEffect, useState,Suspense, lazy } from "react";
 // import ParticleRing from "./components/ParticeRing.jsx";
 import { World } from "./components/World";
 import About from "./components/About";
@@ -21,6 +21,7 @@ import Game from "./components/Game";
 import Fiels from "./components/Files";
 import TeacherUploads from "./components/teacherUploads";
 import Game1 from "./components/Game1";
+const ParticleRing = lazy(() => import('./components/ParticeRing.jsx'));
 
 function App() {
   const globeConfig = {
@@ -62,7 +63,10 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="relative w-screen h-screen">
-          {/* <ParticleRing className="absolute inset-0 z-0" /> */}
+          
+          <Suspense fallback={<div>Loading...</div>}>
+          <ParticleRing className="absolute inset-0 z-0" />
+      </Suspense>
           <Navbar className="z-10 text-black" />
           <AuthRoutes globeConfig={globeConfig} globeData={globeData} />
           <Footer />

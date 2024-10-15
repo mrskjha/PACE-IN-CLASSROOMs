@@ -3,11 +3,16 @@ import satelliteImage from '../assets/Quiz1.png';
 import homeImage from '../assets/Data visualization2.png';
 import learningImage from '../assets/LearningMaterial.png';
 // import ParticleRing from "./particeRing";
+import { lazy, Suspense, } from "react";
+const ParticleRing = lazy(() => import('./ParticeRing'));
+
 
 const SquishyCard = () => {
   return (
     <>
-      {/* <ParticleRing className="relative inset-0 z-0" /> */}
+      <Suspense fallback={<div>Loading...</div>}>
+          <ParticleRing className="absolute inset-0 z-0" />
+      </Suspense>
       <div className="absolute ml-[200px] top-0 z-10">
         <section className="mt-[150px] px-4 py-12">
           <div className="mx-auto flex flex-wrap justify-center gap-8">

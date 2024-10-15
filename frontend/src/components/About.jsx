@@ -1,10 +1,16 @@
 // import ParticleRing from "./ParticeRing"
+import {Suspense, lazy} from "react"
+const ParticleRing = lazy(() => import('./ParticeRing'));
+
 
 
 const About = () => {
     return (
       <>
-      {/* <ParticleRing  className=""/> */}
+      
+      <Suspense fallback={<div>Loading...</div>}>
+          <ParticleRing className="" />
+      </Suspense>
       <div>
           <div className=" absolute top-[100%] w-full h-screen ">
       
