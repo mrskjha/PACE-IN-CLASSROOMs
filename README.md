@@ -8,7 +8,7 @@ Our project is an educational website designed to simplify and make NASA's PACE 
 This project aims to simplify complex scientific concepts for all age groups, making it easier to learn about oceans and the environment. By presenting the data in an engaging way, we aim to spark interest and improve ocean literacy worldwide.
 
 ## Project Demo
-https://docs.google.com/presentation/d/1SrR-lnYcvnntul4ZiMV6FKPqvsEUkuBy/edit?usp=sharing&amp;ouid=109459704747744028597&amp;rtpof=true&amp;sd=true
+https://pace-in-classroom.vercel.app/
 
 ## Final Project Repository
 [PACE-IN-CLASSROOMs](https://github.com/mrskjha/PACE-IN-CLASSROOMs)
