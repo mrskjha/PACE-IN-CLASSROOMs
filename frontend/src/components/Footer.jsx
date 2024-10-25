@@ -39,7 +39,7 @@ const Footer = () => {
 
       
       <div className=" text-center text-white flex justify-center items-start">
-        <p className="text-sm py-4 ">© 2021 PACE. All rights reserved.
+        <p className="text-sm py-4 ">© 2024 PACE. All rights reserved.
           <Link to="/maps">
             Maps
           </Link>
