@@ -1,6 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"; 
-import { useEffect, useState,Suspense, lazy } from "react";
-// import ParticleRing from "./components/ParticeRing.jsx";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { useEffect, useState, Suspense, lazy } from "react";
 import { World } from "./components/World";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -21,7 +25,7 @@ import Game from "./components/Game";
 import Fiels from "./components/Files";
 import TeacherUploads from "./components/teacherUploads";
 import Game1 from "./components/Game1";
-const ParticleRing = lazy(() => import('./components/ParticeRing.jsx'));
+const ParticleRing = lazy(() => import("./components/ParticeRing.jsx"));
 
 function App() {
   const globeConfig = {
@@ -63,10 +67,9 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="relative w-screen h-screen">
-          
           <Suspense fallback={<div>Loading...</div>}>
-          <ParticleRing className="absolute inset-0 z-0" />
-      </Suspense>
+            <ParticleRing className="absolute inset-0 z-0" />
+          </Suspense>
           <Navbar className="z-10 text-black" />
           <AuthRoutes globeConfig={globeConfig} globeData={globeData} />
           <Footer />
@@ -84,34 +87,42 @@ const isTeacher = (user) => {
 
 // New component to handle routes and authentication
 const AuthRoutes = ({ globeConfig, globeData }) => {
-  const { isAuthenticated, user } = useAuth(); 
+  const { isAuthenticated, user } = useAuth();
   const isHomeRoute = location.pathname === "/";
   return (
     <div className="absolute top-0 left-0 w-full h-full z-10">
       <Routes>
         {isAuthenticated ? (
           <>
-            <Route 
-              path="/" 
+            <Route
+              path="/"
               element={
                 <>
                   <World globeConfig={globeConfig} data={globeData} />
                   <About />
-                 
+
                   <Contact />
                   <Footer />
                 </>
-              } 
+              }
             />
             <Route path="/contact" element={<Contact />} />
             <Route path="/courses" element={<SquishyCard />} />
             <Route path="/maps" element={<GoogleMap />} />
-            
+
             {/* Check if user is defined and has a teacher role */}
             {isTeacher(user) ? (
               <Route path="/teacher" element={<Navigate to="/" />} />
             ) : (
-              <Route path="/teacher" element={<><Teacher /><Fiels /></>} />
+              <Route
+                path="/teacher"
+                element={
+                  <>
+                    <Teacher />
+                    <Fiels />
+                  </>
+                }
+              />
             )}
 
             <Route
@@ -126,8 +137,14 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
             <Route path="/learning/phytoplankton" element={<Phytoplankton />} />
             <Route path="/learning/ownpace" element={<OwnPace />} />
             <Route path="/learning/fetchNASAData" element={<FetchNASAData />} />
-            <Route path="/learning/teacherUploads" element={<TeacherUploads />} />
-            <Route path="/video-learning" element={<VideoLearning className="z-50" />} />
+            <Route
+              path="/learning/teacherUploads"
+              element={<TeacherUploads />}
+            />
+            <Route
+              path="/video-learning"
+              element={<VideoLearning className="z-50" />}
+            />
             <Route path="/game" element={<Game />} />
             <Route path="/game1" element={<Game1 />} />
             <Route path="*" element={<Navigate to="/" />} />

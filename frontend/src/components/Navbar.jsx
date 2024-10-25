@@ -54,7 +54,7 @@ const Navbar = () => {
         ) : (
           <><Link to="/login">
             <button
-              className="bg-red-600 text-white font-semibold py-1 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
+              className="bg-gray-600 text-white font-semibold py-1 px-4 rounded hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105"
               onClick={logout} // Call logout directly
             >
               Logout
