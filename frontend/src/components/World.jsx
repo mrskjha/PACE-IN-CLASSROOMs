@@ -203,9 +203,9 @@ export function World({ globeConfig }) {
       {" "}
       {/* Full screen */}
       {/* Heading and Paragraph on the Left Side */}
-      <div className="flex flex-col justify-center mr-5 text-white px-20 w-[900px]">
+      <div className="flex flex-col justify-center mr-5 text-white px-20 w-[1200px] ">
         <motion.h1
-          className="text-green-500 text-5xl font-bold mb-2"
+          className="text-indigo-900 text-5xl font-bold mb-2"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -213,7 +213,7 @@ export function World({ globeConfig }) {
           PACE
         </motion.h1>
         <motion.h1
-          className="text-3xl font-bold mb-3 text-white"
+          className="text-3xl font-bold mb-3 text-white "
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -231,7 +231,7 @@ export function World({ globeConfig }) {
         <div>
           <Link to="/courses">
             <motion.button
-              className="uppercase bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition duration-300 mt-2"
+              className="uppercase bg-gray-700 text-white px-6 py-3 rounded-md hover:bg-gray-900 transition duration-300 "
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

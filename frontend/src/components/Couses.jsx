@@ -13,7 +13,7 @@ const SquishyCard = () => {
       <Suspense fallback={<div>Loading...</div>}>
           <ParticleRing className="absolute inset-0 z-0" />
       </Suspense>
-      <div className="absolute ml-[200px] top-[200%] z-10">
+      <div className="absolute ml-[200px] top-[0%] z-10">
         <section className="mt-[150px] px-4 py-12">
           <div className="mx-auto flex flex-wrap justify-center gap-8">
             {/* First Card */}
