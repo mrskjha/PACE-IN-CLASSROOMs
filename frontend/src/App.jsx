@@ -85,7 +85,7 @@ const isTeacher = (user) => {
 // New component to handle routes and authentication
 const AuthRoutes = ({ globeConfig, globeData }) => {
   const { isAuthenticated, user } = useAuth(); 
-
+  const isHomeRoute = location.pathname === "/";
   return (
     <div className="absolute top-0 left-0 w-full h-full z-10">
       <Routes>
@@ -97,7 +97,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
                 <>
                   <World globeConfig={globeConfig} data={globeData} />
                   <About />
-                 <SquishyCard /> {/* Render About component here for the Home page */}
+                 
                   <Contact />
                   <Footer />
                 </>
