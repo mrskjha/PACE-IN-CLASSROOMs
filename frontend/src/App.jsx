@@ -96,7 +96,8 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
               element={
                 <>
                   <World globeConfig={globeConfig} data={globeData} />
-                  <About /> {/* Render About component here for the Home page */}
+                  <About />
+                 <SquishyCard /> {/* Render About component here for the Home page */}
                   <Contact />
                 </>
               } 
