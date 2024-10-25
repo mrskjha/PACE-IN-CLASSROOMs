@@ -99,6 +99,7 @@ const AuthRoutes = ({ globeConfig, globeData }) => {
                   <About />
                  <SquishyCard /> {/* Render About component here for the Home page */}
                   <Contact />
+                  <Footer />
                 </>
               } 
             />
