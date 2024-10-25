@@ -1,6 +1,8 @@
 // import ParticleRing from "./ParticeRing"
 import {Suspense, lazy} from "react"
 const ParticleRing = lazy(() => import('./ParticeRing'));
+import ModernHome from "/src/assets/satellite.png";
+import smallimg from "/src/assets/home1.png" 
 
 
 
@@ -18,10 +20,10 @@ const About = () => {
       <div className=" text-white min-h-screen flex flex-col items-center justify-center">
         <div className="relative max-w-5xl mx-auto p-8">
         
-          <div className="absolute top-0 left-[-30%] w-32 h-32 ml-16 rounded-full border-4 border-purple-900 bg-transparent" ><img src="\src\assets\home1.png"></img></div>
+          <div className="absolute top-0 left-[-30%] w-32 h-32 ml-16 rounded-full border-4 border-purple-900 bg-transparent" ><img src={smallimg}></img></div>
               
           
-          <div className="absolute top-96 right-[-30%] w-32  h-32 mr-24 rounded-full border-4 border-purple-900 bg-transparent" ><img src="\src\assets\home1.png"></img></div>
+          <div className="absolute top-96 right-[-30%] w-32  h-32 mr-24 rounded-full border-4 border-purple-900 bg-transparent" ><img src={smallimg}></img></div>
           
           
           <div className="flex flex-col md:flex-row items-center">
@@ -29,7 +31,7 @@ const About = () => {
             <div className="w-full md:w-1/2 flex justify-center">
               <div className="rounded-full overflow-hidden border-4 border-black ">
                 <img
-                  src="\src\assets\satellite.png"
+                  src={ModernHome}
                   alt="Modern Home"
                   className="object-cover h-72 w-72"
                 />
