@@ -23,6 +23,7 @@ const Login = () => {
     category: "",
   });
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignInChange = (e) => {
@@ -37,14 +38,22 @@ const Login = () => {
 
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
+    if (!signInData.email || !signInData.password) {
+      alert("Please fill out all the required fields.");
+      return;
+    }
+    setIsLoading(true);
     try {
-      const response = await fetch("https://pace-in-classrooms.onrender.com/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signInData),
-      });
+      const response = await fetch(
+        "https://pace-in-classrooms.onrender.com/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signInData),
+        }
+      );
       const data = await response.json();
       if (data.success) {
         alert("Logged in successfully!");
@@ -57,30 +66,47 @@ const Login = () => {
       console.error("Login error:", error);
       alert("Login failed! Please try again.");
     }
+    setIsLoading(false);
   };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!signUpData.username || !signUpData.email || !signUpData.password || !signUpData.className || !signUpData.category) {
+
+    if (
+      !signUpData.username ||
+      !signUpData.email ||
+      !signUpData.password ||
+      !signUpData.className ||
+      !signUpData.category
+    ) {
       alert("Please fill out all the required fields.");
       return;
     }
-  
+
+    setIsLoading(true);
     try {
-      const response = await fetch("https://pace-in-classrooms.onrender.com/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signUpData),
-      });
+      const response = await fetch(
+        "https://pace-in-classrooms.onrender.com/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signUpData),
+        }
+      );
       const data = await response.json();
-      
+
       if (data.success) {
         alert("Signed up successfully! You can now log in.");
         setIsSignUp(false);
-        setSignUpData({ username: "", email: "", password: "", className: "", category: "" }); // Clear sign-up form
+        setSignUpData({
+          username: "",
+          email: "",
+          password: "",
+          className: "",
+          category: "",
+        }); // Clear sign-up form
       } else {
         alert(data.error || "Sign up failed! Please try again.");
       }
@@ -88,8 +114,8 @@ const Login = () => {
       console.error("Sign Up error:", error);
       alert("Sign Up failed! Please try again.");
     }
+    setIsLoading(false);
   };
-  
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -131,7 +157,7 @@ const Login = () => {
                 required
               />
             </div>
-            <input type="submit" value="Login" className="btn solid" />
+            <input type="submit" value={isLoading ? "Loading..." : "Login"} className="btn solid" disabled={isLoading} />
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -202,18 +228,16 @@ const Login = () => {
             <div className="input-field">
               <i className="fas fa-user"></i>
               <input
-              type="text"
+                type="text"
                 name="category"
                 value={signUpData.category}
                 onChange={handleSignUpChange}
                 placeholder="Category (e.g. teacher/student)"
                 required
-              >
-
-              </input>
+              ></input>
             </div>
 
-            <input type="submit" className="btn" value="Sign up" />
+            <input type="submit" className="btn" value={isLoading ? "Loading..." : "Sign up"} disabled={isLoading} />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
@@ -251,8 +275,8 @@ const Login = () => {
           <div className="content">
             <h3>One of us?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+              ex ratione. Aliquid!
             </p>
             <button className="btn transparent" onClick={handleSignInClick}>
               Sign in
