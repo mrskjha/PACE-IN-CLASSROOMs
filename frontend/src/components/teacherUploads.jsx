@@ -8,7 +8,7 @@ const TeacherUploads = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const response = await fetch("http://localhost:5000/images"); // Endpoint to fetch the list of uploaded files
+        const response = await fetch("https://pace-in-classrooms.onrender.com/images"); // Endpoint to fetch the list of uploaded files
         if (!response.ok) throw new Error("Failed to fetch files");
         const data = await response.json();
         setFiles(data);
@@ -61,13 +61,13 @@ const TeacherUploads = () => {
               >
                 {isImage(file) ? (
                   <img
-                    src={`http://localhost:5000/uploads/${file}`} // Adjusted path for images
+                    src={`https://pace-in-classrooms.onrender.com/uploads/${file}`} // Adjusted path for images
                     alt={file}
                     className="max-w-full h-auto rounded-md"
                   />
                 ) : (
                   <a
-                    href={`http://localhost:5000/uploads/${file}`} // Adjusted path for downloading files
+                    href={`https://pace-in-classrooms.onrender.com/uploads/${file}`} // Adjusted path for downloading files
                     download
                     className="text-yellow-300 hover:underline"
                   >
